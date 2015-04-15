@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -30,7 +31,7 @@
 				<h2 class="page-header">应用管理</h2>
 
 				<ol class="breadcrumb">
-					<li><a href="#">首页</a></li>
+					<li><a href="/">首页</a></li>
 					<li class="active">应用列表</li>
 				</ol>
 
@@ -45,27 +46,33 @@
 									name="word" /> <input type="button" class="btn btn-primary"value="查询" onclick="theme_init()" />
 							</div>
 							<div class="col-xs-2">
-								<button type="button" class="btn btn-primary"
-									data-toggle="modal" data-target="#create-theme">添加</button>
+								<a class="btn btn-primary" href="./create">添加</a>
 							</div>
 						</div>
 					</div>
 				</div>
 
 				<div class="table-responsive">
-					<table class="table table-striped">
+					<table class="table table-striped table-bordered">
 						<thead>
 							<tr>
-								<th>应用名称</th>
-								<th>应用编码</th>
-								<th>应用状态</th>
-								<th>URL</th>
-								<th>更新时间</th>
-								<th></th>
+								<th width="15%" style="text-align: center;">应用名称</th>
+								<th width="10%" style="text-align: center;">应用编码</th>
+								<th width="10%" style="text-align: center;">应用状态</th>
+								<th width="40%" style="text-align: center;">URL</th>
+								<th style="text-align: center;">更新时间</th>
 							</tr>
 						</thead>
 						<tbody>
-							
+							<c:forEach var="item" items="${page.content }">
+								<tr>
+									<td>${item.name }</td>
+									<td>${item.name }</td>
+									<td>${item.name }</td>
+									<td>${item.name }</td>
+									<td>${item.name }</td>
+								</tr>
+							</c:forEach>
 						</tbody>
 					</table>
 				</div>

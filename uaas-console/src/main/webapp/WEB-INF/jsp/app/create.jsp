@@ -9,16 +9,26 @@
 <script src="../../../scripts/bootstrap-3.3.4-dist/js/bootstrap.min.js"></script>
 <script src="../../../scripts/dashboard/docs.min.js"></script>
 <script src="../../../scripts/dashboard/ie10-viewport-bug-workaround.js"></script>
-<script src="../../../scripts/dashboard/ie-emulation-modes-warning.js"></script>
-
+<script src="../../../scripts/dashboard/ie-emulation-modes-warning.js"></script>	
 <link href="../../../scripts/bootstrap-3.3.4-dist/css/bootstrap.min.css"
 	rel="stylesheet">
 <link href="../../../scripts/dashboard/dashboard.css" rel="stylesheet">
 <link href="../../../scripts/commons/css/core.css" rel="stylesheet">
-
 <script src="../../../scripts/commons/js/menu.js"></script>
 <script src="../../../scripts/commons/js/pager.js"></script>
-<script src="../../../scripts/commons/js/app/app.js"></script>
+
+<script src="../../../scripts/jquery-validation-1.13.1/dist/jquery.validate.min.js"></script>
+<script src="../../../scripts/commons/js/app/create.js"></script>
+
+<style type="text/css">
+#app-form label.error {
+		margin-left: 10px;
+		width: auto;
+		display: inline;
+		color: red;
+}
+</style>
+
 <title>权限管理系统</title>
 </head>
 <body>
@@ -34,11 +44,8 @@
 					<li><a href="./">应用列表</a></li>
 					<li class="active">应用创建</li>
 				</ol>
-				<%@include file="./_form.jsp" %>
-				<div class="text-center">
-					<input type="submit" value="创建" class="btn btn-primary" /> <a
-						href="./" class="btn btn-default">取消</a>
-				</div>
+				<%@include file="_form.jsp"%>
+
 			</div>
 		</div>
 	</div>

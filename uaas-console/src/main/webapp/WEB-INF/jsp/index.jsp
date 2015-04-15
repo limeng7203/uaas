@@ -18,35 +18,18 @@
 <title>权限管理系统</title>
 </head>
 <body>
-	<jsp:include page="./commons/header.jsp"></jsp:include>
-
+	<%@include file="./commons/header.jsp"%>
 	<div class="container-fluid">
 		<div class="row">
-			<div class="col-sm-3 col-md-2 sidebar">
-				<h4>
-					<span style="margin-left: -15px;"
-						class="glyphicon glyphicon-triangle-bottom"></span>&nbsp;评测数据集
-				</h4>
-				<ul class="nav nav-sidebar">
-					<li class="active"><a href="#" onclick="theme()">主题词管理</a></li>
-					<li><a href="document.html">文档管理</a></li>
-					<li><a href="association.html">相关度管理</a></li>
-				</ul>
-				<h4>
-					<span style="margin-left: -15px;"
-						class="glyphicon glyphicon-triangle-bottom"></span>&nbsp;评测内容
-				</h4>
-				<ul class="nav nav-sidebar">
-					<li><a href="">准确度评测</a></li>
-					<li><a href="">搜全率评测</a></li>
-				</ul>
-			</div>
+			<%@include file="./commons/menu.jsp"%>
 			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-				<h2 class="page-header">主题词管理</h2>
+
+				<h1 class="page-header">整体风格预览</h1>
+				<h2 class="page-header">部门管理</h2>
 
 				<ol class="breadcrumb">
 					<li><a href="#">首页</a></li>
-					<li class="active">主题词管理</li>
+					<li class="active">部门管理</li>
 				</ol>
 
 				<div class="panel panel-primary">
@@ -85,19 +68,7 @@
 						</tbody>
 					</table>
 				</div>
-				<!-- 分页开始 -->
-				<div id="cell-pager" class="row">
-					<nav>
-					<ul class="pager">
-						<li><a href="#" onclick="first()">首页</a></li>
-						<li><a href="#" onclick="previous()">上一页</a></li>
-						<li><a href="#" onclick="next()">下一页</a></li>
-						<li><a href="#" onclick="end()">末页</a></li>
-						<li id="theme_page-info">共 1/14 页</li>
-					</ul>
-					</nav>
-				</div>
-				<!-- 分页结束 -->
+				<%@include file="./commons/pager.jsp" %>
 			</div>
 		</div>
 	</div>

@@ -8,6 +8,6 @@
 				value="${error.message == null? '未知异常' : error.message }"></c:out></span>
 		<br>
 						异常描述：<span style="color: red;"><c:out
-				value="${error.description == null? '未知描述' : error.message }"></c:out></span>
+				value="${error.description == null? '未知描述' : error.description }"></c:out></span>
 	</c:if>
 </div>

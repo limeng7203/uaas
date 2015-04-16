@@ -29,7 +29,7 @@ public class App {
 	 */
 	private String secret;
 	/**
-	 * 状态
+	 * 状态:1表示启用；0表示禁用；-1表示删除
 	 */
 	private Integer state;
 	/**

@@ -25,6 +25,10 @@ function validateForm() {
 				required: true,
 				minlength: 6,
 				maxlength: 20
+			},
+			url: {
+				required: true,
+				maxlength: 255
 			}
 		},
 		messages: {
@@ -39,7 +43,11 @@ function validateForm() {
 			secret: {
 				required: "请输入应用密钥",
 				minlength: "最小长度不能低于6个字符",
-				minlength: "最大长度不能超过20个字符"
+				maxlength: "最大长度不能超过20个字符"
+			},
+			url: {
+				required: "请输入应用URL",
+				maxlength: "最大长度不能超过255个字符"
 			}
 		}
 	});

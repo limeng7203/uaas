@@ -41,6 +41,7 @@ public class AppService {
 	 * <pre>
 	 * 1、应用名称
 	 * 2、编码不能重复
+	 * 3、默认管理员是当前创建的用户
 	 * </pre>
 	 * 
 	 * @param app
@@ -78,7 +79,7 @@ public class AppService {
 	 */
 	@Transactional
 	public void update(App app) {
-		App dbApp = appRepo.findOne(app.getId());
+		App dbApp = get(app.getId());
 		dbApp.setCode(app.getCode());
 		dbApp.setName(app.getName());
 		dbApp.setLastUpdated(new Date());
@@ -122,6 +123,22 @@ public class AppService {
 	public void delete(Long id) {
 		App app = appRepo.findOne(id);
 		app.setState(-1);
+	}
+
+	/**
+	 * 获取一个应用
+	 * 
+	 * @param id
+	 * @return
+	 */
+	public App get(Long id) {
+		App app = appRepo.findByIdAndStateNot(id, -1);
+
+		if (null == app) {
+			throw new BussinessException("app_not_found_exception",
+					"该应用不存在或者已经被删除");
+		}
+		return app;
 	}
 
 }

@@ -37,6 +37,10 @@ public class App {
 	 */
 	private String url;
 	/**
+	 * 管理员的用户名，以逗号切分；最大长度255因为每个用户名最大20个，所以最多10个管理员
+	 */
+	private String admin;
+	/**
 	 * 描述
 	 */
 	private String description;
@@ -106,6 +110,15 @@ public class App {
 
 	public void setUrl(String url) {
 		this.url = url;
+	}
+
+	@Column(name = "admin", nullable = true)
+	public String getAdmin() {
+		return admin;
+	}
+
+	public void setAdmin(String admin) {
+		this.admin = admin;
 	}
 
 	@Column(name = "description", nullable = true)

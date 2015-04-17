@@ -14,4 +14,6 @@ public interface AppRepo extends JpaRepository<App, Long> {
 
 	App findByCode(String code);
 
+	App findByIdAndStateNot(Long id, int i);
+
 }

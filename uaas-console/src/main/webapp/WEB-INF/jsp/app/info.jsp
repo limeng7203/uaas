@@ -21,17 +21,12 @@
 
 <script
 	src="../../../scripts/jquery-validation-1.13.1/dist/jquery.validate.min.js"></script>
-<script src="../../../scripts/commons/js/app/create.js"></script>
 
-<style type="text/css">
-#app-form label.error {
-	margin-left: 10px;
-	width: auto;
-	display: inline;
-	color: red;
-}
-</style>
-
+<script type="text/javascript">
+	$(function() {
+		$(":input").attr("disabled","disabled");
+	});
+</script>
 <title>权限管理系统</title>
 </head>
 <body>
@@ -44,8 +39,8 @@
 
 				<ol class="breadcrumb">
 					<li><a href="/">首页</a></li>
-					<li><a href="./">应用列表</a></li>
-					<li class="active">应用创建</li>
+					<li><a href="${contextPath }/app/">应用列表</a></li>
+					<li class="active">应用信息</li>
 				</ol>
 				<%@include file="../commons/info.jsp"%>
 				<%@include file="../commons/error.jsp"%>
@@ -78,9 +73,16 @@
 								<tr>
 									<td class="active text-right"><label class="control-label"
 										for="secret">应用密钥：<span class="required">*</span></label></td>
-									<td colspan="3">
+									<td>
 										<div class="input-group input-group-sm">
 											<form:input path="secret" />
+										</div>
+									</td>
+									<td class="active text-right"><label
+										class="control-label " for="code">更新时间：</label></td>
+									<td>
+										<div class="input-group input-group-sm">
+											<form:input path="lastUpdated" />
 										</div>
 									</td>
 								</tr>
@@ -108,8 +110,8 @@
 						</table>
 
 						<div class="text-center">
-							<a href="./update/${app.id }" class="btn btn-primary">更新</a> <a
-								href="./" class="btn btn-default">取消</a>
+							<a href="${contextPath }/app/update/${app.id }" class="btn btn-primary">更新</a> <a
+								href="${contextPath }/app/" class="btn btn-default">取消</a>
 						</div>
 					</div>
 

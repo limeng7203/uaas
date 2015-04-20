@@ -141,4 +141,11 @@ public class AppService {
 		return app;
 	}
 
+	public Page<App> findByNameLike(String name, int page, int size) {
+		size = size > 100 ? 100 : size;
+		Page<App> apps = appRepo.findByNameLike("%" + name + "%", new PageRequest(page,
+				size));
+		return apps;
+	}
+
 }

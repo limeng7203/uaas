@@ -1,5 +1,7 @@
 package uaas.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
@@ -45,6 +47,7 @@ import uaas.service.AppService;
 @Controller
 @RequestMapping("/app")
 public class AppController {
+	private Logger log = LoggerFactory.getLogger(getClass());
 	@Autowired
 	private AppService appService;
 
@@ -69,7 +72,7 @@ public class AppController {
 		return mav;
 	}
 
-	@RequestMapping(value="/save", method = RequestMethod.POST)
+	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public ModelAndView save(App app) {
 		ModelAndView mav = new ModelAndView("/app/info");
 		try {
@@ -104,7 +107,7 @@ public class AppController {
 		return mav;
 	}
 
-	@RequestMapping(value="/modify", method = RequestMethod.POST)
+	@RequestMapping(value = "/modify", method = RequestMethod.POST)
 	public ModelAndView modify(App app) {
 		ModelAndView mav = new ModelAndView("/app/info");
 		try {
@@ -116,6 +119,24 @@ public class AppController {
 			mav.addObject("error", e);
 			mav.addObject("app", app);
 		}
+		return mav;
+	}
+
+	/**
+	 * 根据名称模糊查询
+	 * 
+	 * @param name
+	 * @param page
+	 * @param size
+	 * @return
+	 */
+	@RequestMapping("/queryByName")
+	public ModelAndView queryByName(String name, Integer page, Integer size) {
+		ModelAndView mav = new ModelAndView("/app/index");
+		Page<App> apps = appService.findByNameLike(name, (null == page ? 0
+				: page), (null == size ? 20 : size));
+		mav.addObject("page", apps);
+		log.debug("apps" + apps.getContent().size());
 		return mav;
 	}
 

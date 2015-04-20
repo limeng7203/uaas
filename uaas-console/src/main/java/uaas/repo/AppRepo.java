@@ -16,4 +16,6 @@ public interface AppRepo extends JpaRepository<App, Long> {
 
 	App findByIdAndStateNot(Long id, int i);
 
+	Page<App> findByNameLike(String name, Pageable pageRequest);
+
 }

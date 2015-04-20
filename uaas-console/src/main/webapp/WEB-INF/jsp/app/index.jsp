@@ -17,9 +17,39 @@
 <link href="../../../scripts/dashboard/dashboard.css" rel="stylesheet">
 <link href="../../../scripts/commons/css/core.css" rel="stylesheet">
 
+<script src="../../../scripts/commons/js/url-util.js"></script>
 <script src="../../../scripts/commons/js/menu.js"></script>
 <script src="../../../scripts/commons/js/pager.js"></script>
-<script src="../../../scripts/commons/js/app/app.js"></script>
+
+<script type="text/javascript">
+	/**
+	 * 初始化页面
+	 */
+	$(function() {
+
+		// 高亮菜单
+		setActiveMenu("menu-app");
+		// 初始化分页组件
+		init();
+	});
+
+	function init() {
+		var isContainsPageInfo = ${null == page};
+		if (isContainsPageInfo) {
+			alert("不包含分页信息");
+			return;
+		}
+		pager.page = ${page.number};
+		pager.size = ${page.size};
+		pager.elementNumber = ${page.numberOfElements};
+		pager.totalPages = ${page.totalPages};
+		pager.totalElements = ${page.totalElements};
+		pager.url = window.location.href.toString();
+		pager.queryString = window.location.search;
+		initPager();
+		
+	}
+</script>
 <title>权限管理系统</title>
 </head>
 <body>
@@ -42,9 +72,11 @@
 					<div class="panel-body">
 						<div class="row">
 							<div class="col-xs-10">
-								<span>应用名称：</span> <input id="theme_query_word" type="text"
-									name="word" /> <input type="button" class="btn btn-primary"
-									value="查询" onclick="theme_init()" />
+								<form action="${contextPath }/app/queryByName" method="get">
+									<span>应用名称：</span> <input type="text"
+										name="name" /> <input type="submit" class="btn btn-primary"
+										value="查询" />
+								</form>
 							</div>
 							<div class="col-xs-2">
 								<a class="btn btn-primary" href="./create">添加</a>
@@ -69,15 +101,15 @@
 								<tr>
 									<td><a href="${contextPath }/app/info/${item.id}">${item.name }</a></td>
 									<td>${item.code }</td>
-									<td align="center"><c:out value="${item.state ==1?'启用':'禁用'}"></c:out></td>
+									<td align="center"><c:out
+											value="${item.state ==1?'启用':'禁用'}"></c:out></td>
 									<td>${item.url }</td>
-									<td align="center">
-										<a href="#" onclick="changeState()"><c:out value="${item.state ==1?'禁用':'启用'}"></c:out></a>
-										<c:out value="&nbsp;&nbsp;" escapeXml="false"></c:out>
-										<a href="#" onclick="deleteApp()"><c:out value="删除"></c:out></a>
-										<c:out value="&nbsp;&nbsp;" escapeXml="false"></c:out>
-										<a href="#" onclick="deleteApp()"><c:out value="管理员"></c:out></a>
-									</td>
+									<td align="center"><a href="#" onclick="changeState()"><c:out
+												value="${item.state ==1?'禁用':'启用'}"></c:out></a> <c:out
+											value="&nbsp;&nbsp;" escapeXml="false"></c:out> <a href="#"
+										onclick="deleteApp()"><c:out value="删除"></c:out></a> <c:out
+											value="&nbsp;&nbsp;" escapeXml="false"></c:out> <a href="#"
+										onclick="deleteApp()"><c:out value="管理员"></c:out></a></td>
 								</tr>
 							</c:forEach>
 						</tbody>

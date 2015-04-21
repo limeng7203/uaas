@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -17,9 +17,39 @@
 <link href="../../../scripts/dashboard/dashboard.css" rel="stylesheet">
 <link href="../../../scripts/commons/css/core.css" rel="stylesheet">
 
+<script src="../../../scripts/commons/js/url-util.js"></script>
 <script src="../../../scripts/commons/js/menu.js"></script>
 <script src="../../../scripts/commons/js/pager.js"></script>
-<script src="../../../scripts/commons/js/app/app.js"></script>
+
+<script type="text/javascript">
+	/**
+	 * 初始化页面
+	 */
+	$(function() {
+
+		// 高亮菜单
+		setActiveMenu("menu-app");
+		// 初始化分页组件
+		init();
+	});
+
+	function init() {
+		var isContainsPageInfo = ${null == page};
+		if (isContainsPageInfo) {
+			alert("不包含分页信息");
+			return;
+		}
+		pager.page = ${page.number};
+		pager.size = ${page.size};
+		pager.elementNumber = ${page.numberOfElements};
+		pager.totalPages = ${page.totalPages};
+		pager.totalElements = ${page.totalElements};
+		pager.url = window.location.href.toString();
+		pager.queryString = window.location.search;
+		initPager();
+		
+	}
+</script>
 <title>权限管理系统</title>
 </head>
 <body>
@@ -42,8 +72,11 @@
 					<div class="panel-body">
 						<div class="row">
 							<div class="col-xs-10">
-								<span>应用名称：</span> <input id="theme_query_word" type="text"
-									name="word" /> <input type="button" class="btn btn-primary"value="查询" onclick="theme_init()" />
+								<form action="${contextPath }/app/queryByName" method="get">
+									<span>应用名称：</span> <input type="text"
+										name="name" /> <input type="submit" class="btn btn-primary"
+										value="查询" />
+								</form>
 							</div>
 							<div class="col-xs-2">
 								<a class="btn btn-primary" href="./create">添加</a>
@@ -60,17 +93,23 @@
 								<th width="10%" style="text-align: center;">应用编码</th>
 								<th width="10%" style="text-align: center;">应用状态</th>
 								<th width="40%" style="text-align: center;">URL</th>
-								<th style="text-align: center;">更新时间</th>
+								<th style="text-align: center;">操作</th>
 							</tr>
 						</thead>
 						<tbody>
 							<c:forEach var="item" items="${page.content }">
 								<tr>
-									<td>${item.name }</td>
-									<td>${item.name }</td>
-									<td>${item.name }</td>
-									<td>${item.name }</td>
-									<td>${item.name }</td>
+									<td><a href="${contextPath }/app/info/${item.id}">${item.name }</a></td>
+									<td>${item.code }</td>
+									<td align="center"><c:out
+											value="${item.state ==1?'启用':'禁用'}"></c:out></td>
+									<td>${item.url }</td>
+									<td align="center"><a href="#" onclick="changeState()"><c:out
+												value="${item.state ==1?'禁用':'启用'}"></c:out></a> <c:out
+											value="&nbsp;&nbsp;" escapeXml="false"></c:out> <a href="#"
+										onclick="deleteApp()"><c:out value="删除"></c:out></a> <c:out
+											value="&nbsp;&nbsp;" escapeXml="false"></c:out> <a href="#"
+										onclick="deleteApp()"><c:out value="管理员"></c:out></a></td>
 								</tr>
 							</c:forEach>
 						</tbody>

@@ -1,9 +1,13 @@
 package uaas.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import uaas.domain.App;
@@ -43,6 +47,7 @@ import uaas.service.AppService;
 @Controller
 @RequestMapping("/app")
 public class AppController {
+	private Logger log = LoggerFactory.getLogger(getClass());
 	@Autowired
 	private AppService appService;
 
@@ -67,7 +72,7 @@ public class AppController {
 		return mav;
 	}
 
-	@RequestMapping("/save")
+	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public ModelAndView save(App app) {
 		ModelAndView mav = new ModelAndView("/app/info");
 		try {
@@ -83,9 +88,56 @@ public class AppController {
 	}
 
 	@RequestMapping("/info/{id}")
-	public ModelAndView info(Long id) {
-		System.out.println("========================");
-		return null;
+	public ModelAndView info(@PathVariable Long id) {
+		ModelAndView mav = new ModelAndView("/app/info");
+		try {
+			App app = appService.get(id);
+			mav.addObject("app", app);
+		} catch (BussinessException e) {
+			mav.addObject("error", e);
+		}
+		return mav;
+	}
+
+	@RequestMapping("/update/{id}")
+	public ModelAndView update(@PathVariable Long id) {
+		ModelAndView mav = new ModelAndView("/app/update");
+		App app = appService.get(id);
+		mav.addObject("app", app);
+		return mav;
+	}
+
+	@RequestMapping(value = "/modify", method = RequestMethod.POST)
+	public ModelAndView modify(App app) {
+		ModelAndView mav = new ModelAndView("/app/info");
+		try {
+			appService.update(app);
+			mav.addObject("app", app);
+			mav.addObject("info", "应用（" + app.getId() + "）更新成功");
+		} catch (BussinessException e) {
+			mav = new ModelAndView("/app/update");
+			mav.addObject("error", e);
+			mav.addObject("app", app);
+		}
+		return mav;
+	}
+
+	/**
+	 * 根据名称模糊查询
+	 * 
+	 * @param name
+	 * @param page
+	 * @param size
+	 * @return
+	 */
+	@RequestMapping("/queryByName")
+	public ModelAndView queryByName(String name, Integer page, Integer size) {
+		ModelAndView mav = new ModelAndView("/app/index");
+		Page<App> apps = appService.findByNameLike(name, (null == page ? 0
+				: page), (null == size ? 20 : size));
+		mav.addObject("page", apps);
+		log.debug("apps" + apps.getContent().size());
+		return mav;
 	}
 
 }

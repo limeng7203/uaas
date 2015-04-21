@@ -37,7 +37,7 @@
 				for="secret">URL：<span class="required">*</span></label></td>
 			<td colspan="3">
 				<div class="input-group input-group-sm">
-					<form:input path="url"  size="50"/>
+					<form:input type="url" path="url"  size="50"/>
 				</div>
 			</td>
 		</tr>

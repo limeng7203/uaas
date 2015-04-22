@@ -35,6 +35,7 @@ public class RoleController {
 	@RequestMapping("/create")
 	public String create(ModelMap mm) {
 		log.info("创建角色");
+		
 		mm.addAttribute("role", new Role());
 		return "/role/create";
 	}

@@ -6,7 +6,8 @@
 		resultType="uaas.domain.Role">
 		select r.id "id", r.code "code", r.name "name", r.state
 		"state", r.updated "updated", a.name "app.name" from uaas_role r,
-		uaas_app a where r.id = a.id
+		uaas_app a where r.app_id = a.id
+		and a.state != -1
 		<if test="appId != null and appId != '' ">
 			and r.id = #{appId}
 		</if>

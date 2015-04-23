@@ -13,7 +13,9 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
+import uaas.domain.App;
 import uaas.domain.Role;
+import uaas.repo.AppRepo;
 import uaas.repo.ComplexQueryRepo;
 import uaas.repo.RoleRepo;
 import uaas.service.criteria.RoleCriteria;
@@ -28,6 +30,8 @@ public class RoleService {
 	@Autowired
 	private RoleRepo roleRepo;
 	@Autowired
+	private AppRepo appRepo;
+	@Autowired
 	private ComplexQueryRepo complexQueryRepo;
 
 	/**
@@ -39,10 +43,13 @@ public class RoleService {
 	@Transactional
 	public Long create(Role role) {
 		log.info("创建角色");
+		
 		role.setCode(role.getName());
 		role.setState(1);
+		App app = appRepo.findByIdAndStateNot(role.getApp().getId(), -1);
 		role.setCreated(new Date());
 		role.setUpdated(new Date());
+		role.setApp(app);
 		roleRepo.save(role);
 		return role.getId();
 	}

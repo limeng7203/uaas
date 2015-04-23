@@ -37,16 +37,17 @@ public class RoleSericeTest {
 	@Test
 	public void testCreate() {
 		
+//		App app = new App();
+//		app.setCode("uaas12");
+//		app.setName("uaas12");
+//		app.setUrl("http://uaas1/");
+//		app.setSecret("123456");
+//		appService.create(app);
 		App app = new App();
-		app.setCode("uaas1");
-		app.setName("uaas1");
-		app.setUrl("http://uaas1/");
-		app.setSecret("123456");
-		appService.create(app);
-		
+		app.setId(1L);
 		Role role = new Role();
 		role.setApp(app);
-		role.setName("admin");
+		role.setName("admin中国");
 		roleService.create(role);
 	}
 }

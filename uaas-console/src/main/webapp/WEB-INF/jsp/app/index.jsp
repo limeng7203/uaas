@@ -61,7 +61,7 @@
 				<h2 class="page-header">应用管理</h2>
 
 				<ol class="breadcrumb">
-					<li><a href="/">首页</a></li>
+					<li><a href="${pageContext.request.contextPath }/">首页</a></li>
 					<li class="active">应用列表</li>
 				</ol>
 
@@ -72,7 +72,7 @@
 					<div class="panel-body">
 						<div class="row">
 							<div class="col-xs-10">
-								<form action="${contextPath }/app/queryByName" method="get">
+								<form action="${pageContext.request.contextPath }/app/queryByName" method="get">
 									<span>应用名称：</span> <input type="text"
 										name="name" /> <input type="submit" class="btn btn-primary"
 										value="查询" />
@@ -99,7 +99,7 @@
 						<tbody>
 							<c:forEach var="item" items="${page.content }">
 								<tr>
-									<td><a href="${contextPath }/app/info/${item.id}">${item.name }</a></td>
+									<td><a href="${pageContext.request.contextPath }/app/info/${item.id}">${item.name }</a></td>
 									<td>${item.code }</td>
 									<td align="center"><c:out
 											value="${item.state ==1?'启用':'禁用'}"></c:out></td>

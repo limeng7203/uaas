@@ -48,13 +48,13 @@
 					<li class="active">应用创建</li>
 				</ol>
 				<%@include file="../commons/error.jsp"%>			
-				<form:form id="app-form" action="./save" method="post"
+				<form:form id="app-form" action="${pageContext.request.contextPath }/app/save" method="post"
 					modelAttribute="app">
 					<div class="table-responsive">
 						<%@include file="_form.jsp"%>
 						<div class="text-center">
 							<input type="submit" value="创建" class="btn btn-primary" /> <a
-								href="./" class="btn btn-default">取消</a>
+								href="${pageContext.request.contextPath }/app/" class="btn btn-default">取消</a>
 						</div>
 					</div>
 

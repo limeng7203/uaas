@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -21,10 +21,10 @@
 
 <script
 	src="${pageContext.request.contextPath }/scripts/jquery-validation-1.13.1/dist/jquery.validate.min.js"></script>
-<script src="${pageContext.request.contextPath }/scripts/commons/js/app/create.js"></script>
+<script src="${pageContext.request.contextPath }/scripts/commons/js/role/create.js"></script>
 
 <style type="text/css">
-#app-form label.error {
+#role-form label.error {
 	margin-left: 10px;
 	width: auto;
 	display: inline;
@@ -40,21 +40,21 @@
 		<div class="row">
 			<%@include file="../commons/menu.jsp"%>
 			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-				<h2 class="page-header">应用管理</h2>
+				<h2 class="page-header">角色管理</h2>
 
 				<ol class="breadcrumb">
-					<li><a href="/">首页</a></li>
-					<li><a href="${pageContext.request.contextPath }/app/">应用列表</a></li>
-					<li class="active">应用更新</li>
+					<li><a href="${pageContext.request.contextPath }/">首页</a></li>
+					<li><a href="${pageContext.request.contextPath }/role/">角色列表</a></li>
+					<li class="active">角色创建</li>
 				</ol>
 				<%@include file="../commons/error.jsp"%>			
-				<form:form id="app-form" action="${pageContext.request.contextPath }/app/modify" method="post"
-					modelAttribute="app">
+				<form:form id="role-form" action="${pageContext.request.contextPath }/role/save" method="post"
+					modelAttribute="role" class="form-inline">
 					<div class="table-responsive">
 						<%@include file="_form.jsp"%>
 						<div class="text-center">
-							<input type="submit" value="更新" class="btn btn-primary" /> <a
-								href="${pageContext.request.contextPath }/app/" class="btn btn-default">取消</a>
+							<input type="submit" value="创建" class="btn btn-primary" /> <a
+								href="${pageContext.request.contextPath }/role/" class="btn btn-default">取消</a>
 						</div>
 					</div>
 

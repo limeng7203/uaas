@@ -55,6 +55,8 @@ public class RoleController {
 
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public String save(Role role, ModelMap mm) {
+		log.debug("===============role.app" + role.getApp().getId());
+		log.debug("===============role.name" + role.getName());
 		roleService.create(role);
 		return "/role/info";
 	}

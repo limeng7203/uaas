@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -21,17 +21,12 @@
 
 <script
 	src="${pageContext.request.contextPath }/scripts/jquery-validation-1.13.1/dist/jquery.validate.min.js"></script>
-<script src="${pageContext.request.contextPath }/scripts/commons/js/app/create.js"></script>
 
-<style type="text/css">
-#app-form label.error {
-	margin-left: 10px;
-	width: auto;
-	display: inline;
-	color: red;
-}
-</style>
-
+<script type="text/javascript">
+	$(function() {
+		$(":input").attr("disabled","disabled");
+	});
+</script>
 <title>权限管理系统</title>
 </head>
 <body>
@@ -40,21 +35,30 @@
 		<div class="row">
 			<%@include file="../commons/menu.jsp"%>
 			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-				<h2 class="page-header">应用管理</h2>
+				<h2 class="page-header">角色管理</h2>
 
 				<ol class="breadcrumb">
 					<li><a href="/">首页</a></li>
-					<li><a href="${pageContext.request.contextPath }/app/">应用列表</a></li>
-					<li class="active">应用更新</li>
+					<li><a href="${pageContext.request.contextPath }/role/">角色列表</a></li>
+					<li class="active">角色信息</li>
 				</ol>
-				<%@include file="../commons/error.jsp"%>			
-				<form:form id="app-form" action="${pageContext.request.contextPath }/app/modify" method="post"
-					modelAttribute="app">
+				<%@include file="../commons/info.jsp"%>
+				<%@include file="../commons/error.jsp"%>
+				<form:form id="app-form" modelAttribute="role">
 					<div class="table-responsive">
-						<%@include file="_form.jsp"%>
+					
+						<table class="table table-bordered">
+							<tbody>
+								<tr class="active">
+									<td colspan="4"><b>基本信息</b></td>
+								</tr>
+									
+							</tbody>
+						</table>
+
 						<div class="text-center">
-							<input type="submit" value="更新" class="btn btn-primary" /> <a
-								href="${pageContext.request.contextPath }/app/" class="btn btn-default">取消</a>
+							<a href="${pageContext.request.contextPath }/role/update/${app.id }" class="btn btn-primary">更新</a> <a
+								href="${pageContext.request.contextPath }/role/" class="btn btn-default">取消</a>
 						</div>
 					</div>
 

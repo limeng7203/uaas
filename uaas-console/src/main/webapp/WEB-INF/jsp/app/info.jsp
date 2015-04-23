@@ -39,7 +39,7 @@
 
 				<ol class="breadcrumb">
 					<li><a href="/">首页</a></li>
-					<li><a href="${contextPath }/app/">应用列表</a></li>
+					<li><a href="${pageContext.request.contextPath }/app/">应用列表</a></li>
 					<li class="active">应用信息</li>
 				</ol>
 				<%@include file="../commons/info.jsp"%>
@@ -110,8 +110,8 @@
 						</table>
 
 						<div class="text-center">
-							<a href="${contextPath }/app/update/${app.id }" class="btn btn-primary">更新</a> <a
-								href="${contextPath }/app/" class="btn btn-default">取消</a>
+							<a href="${pageContext.request.contextPath }/app/update/${app.id }" class="btn btn-primary">更新</a> <a
+								href="${pageContext.request.contextPath }/app/" class="btn btn-default">取消</a>
 						</div>
 					</div>
 

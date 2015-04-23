@@ -16,7 +16,6 @@ function initPager() {
 	var firstPageResult = firstPage();
 	var prevPageResult = prevPage();
 	var nextPageResult = nextPage();
-	alert(nextPageResult);
 	var endPageResult = endPage();
 	var pageInfoResult = pageInfo();
 	$("#pager-first").attr("href", firstPageResult);

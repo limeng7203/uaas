@@ -5,21 +5,21 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="icon" href="../../../images/favicon.ico">
-<script src="../../../scripts/jquery/jquery-2.1.3.min.js"></script>
-<script src="../../../scripts/bootstrap-3.3.4-dist/js/bootstrap.min.js"></script>
-<script src="../../../scripts/dashboard/docs.min.js"></script>
-<script src="../../../scripts/dashboard/ie10-viewport-bug-workaround.js"></script>
-<script src="../../../scripts/dashboard/ie-emulation-modes-warning.js"></script>
+<link rel="icon" href="${pageContext.request.contextPath }/images/favicon.ico">
+<script src="${pageContext.request.contextPath }/scripts/jquery/jquery-2.1.3.min.js"></script>
+<script src="${pageContext.request.contextPath }/scripts/bootstrap-3.3.4-dist/js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath }/scripts/dashboard/docs.min.js"></script>
+<script src="${pageContext.request.contextPath }/scripts/dashboard/ie10-viewport-bug-workaround.js"></script>
+<script src="${pageContext.request.contextPath }/scripts/dashboard/ie-emulation-modes-warning.js"></script>
 
-<link href="../../../scripts/bootstrap-3.3.4-dist/css/bootstrap.min.css"
+<link href="${pageContext.request.contextPath }/scripts/bootstrap-3.3.4-dist/css/bootstrap.min.css"
 	rel="stylesheet">
-<link href="../../../scripts/dashboard/dashboard.css" rel="stylesheet">
-<link href="../../../scripts/commons/css/core.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath }/scripts/dashboard/dashboard.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath }/scripts/commons/css/core.css" rel="stylesheet">
 
-<script src="../../../scripts/commons/js/url-util.js"></script>
-<script src="../../../scripts/commons/js/menu.js"></script>
-<script src="../../../scripts/commons/js/pager.js"></script>
+<script src="${pageContext.request.contextPath }/scripts/commons/js/url-util.js"></script>
+<script src="${pageContext.request.contextPath }/scripts/commons/js/menu.js"></script>
+<script src="${pageContext.request.contextPath }/scripts/commons/js/pager.js"></script>
 
 <script type="text/javascript">
 	/**

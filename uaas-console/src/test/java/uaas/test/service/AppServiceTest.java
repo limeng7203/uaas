@@ -37,5 +37,5 @@ public class AppServiceTest {
 		app.setSecret("123456");
 		appService.create(app);
 	}
-
+	
 }

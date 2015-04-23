@@ -5,21 +5,21 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="icon" href="../../../images/favicon.ico">
-<script src="../../../scripts/jquery/jquery-2.1.3.min.js"></script>
-<script src="../../../scripts/bootstrap-3.3.4-dist/js/bootstrap.min.js"></script>
-<script src="../../../scripts/dashboard/docs.min.js"></script>
-<script src="../../../scripts/dashboard/ie10-viewport-bug-workaround.js"></script>
-<script src="../../../scripts/dashboard/ie-emulation-modes-warning.js"></script>
+<link rel="icon" href="${pageContext.request.contextPath }/images/favicon.ico">
+<script src="${pageContext.request.contextPath }/scripts/jquery/jquery-2.1.3.min.js"></script>
+<script src="${pageContext.request.contextPath }/scripts/bootstrap-3.3.4-dist/js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath }/scripts/dashboard/docs.min.js"></script>
+<script src="${pageContext.request.contextPath }/scripts/dashboard/ie10-viewport-bug-workaround.js"></script>
+<script src="${pageContext.request.contextPath }/scripts/dashboard/ie-emulation-modes-warning.js"></script>
 
-<link href="../../../scripts/bootstrap-3.3.4-dist/css/bootstrap.min.css"
+<link href="${pageContext.request.contextPath }/scripts/bootstrap-3.3.4-dist/css/bootstrap.min.css"
 	rel="stylesheet">
-<link href="../../../scripts/dashboard/dashboard.css" rel="stylesheet">
-<link href="../../../scripts/commons/css/core.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath }/scripts/dashboard/dashboard.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath }/scripts/commons/css/core.css" rel="stylesheet">
 
-<script src="../../../scripts/commons/js/url-util.js"></script>
-<script src="../../../scripts/commons/js/menu.js"></script>
-<script src="../../../scripts/commons/js/pager.js"></script>
+<script src="${pageContext.request.contextPath }/scripts/commons/js/url-util.js"></script>
+<script src="${pageContext.request.contextPath }/scripts/commons/js/menu.js"></script>
+<script src="${pageContext.request.contextPath }/scripts/commons/js/pager.js"></script>
 
 <script type="text/javascript">
 	/**
@@ -58,11 +58,11 @@
 		<div class="row">
 			<%@include file="../commons/menu.jsp"%>
 			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-				<h2 class="page-header">应用管理</h2>
+				<h2 class="page-header">角色管理</h2>
 
 				<ol class="breadcrumb">
-					<li><a href="/">首页</a></li>
-					<li class="active">应用列表</li>
+					<li><a href="${pageContext.request.contextPath }/">首页</a></li>
+					<li class="active">角色列表</li>
 				</ol>
 
 				<div class="panel panel-primary">
@@ -72,10 +72,24 @@
 					<div class="panel-body">
 						<div class="row">
 							<div class="col-xs-10">
-								<form action="${contextPath }/app/queryByName" method="get">
-									<span>应用名称：</span> <input type="text"
-										name="name" /> <input type="submit" class="btn btn-primary"
-										value="查询" />
+								<form action="${pageContext.request.contextPath }/role/" method="get"  class="form-inline">
+									<div class="form-group" >
+										<span for="appId">应用：</span>
+										<select id="appId" name="appId" class="form-control">
+											<option value="">请选择</option>
+											<c:forEach items="${apps}" var="app">
+												<option value="${app.id }">${app.name }</option>
+											</c:forEach>
+										</select>
+									</div>
+									<div class="form-group" >
+										<span for="name">名称：</span>
+										<input id="name" name="name"  type="text" class="form-control" />
+									</div>
+									<div class="form-group" >
+										<input type="submit" class="btn btn-primary" value="查询" />
+									</div>
+
 								</form>
 							</div>
 							<div class="col-xs-2">
@@ -89,27 +103,31 @@
 					<table class="table table-striped table-bordered">
 						<thead>
 							<tr>
-								<th width="15%" style="text-align: center;">应用名称</th>
-								<th width="10%" style="text-align: center;">应用编码</th>
+								<th width="15%" style="text-align: center;">角色名称</th>
+								<th width="10%" style="text-align: center;">角色编码</th>
 								<th width="10%" style="text-align: center;">应用状态</th>
-								<th width="40%" style="text-align: center;">URL</th>
+								<th width="40%" style="text-align: center;">所属应用</th>
 								<th style="text-align: center;">操作</th>
 							</tr>
 						</thead>
 						<tbody>
 							<c:forEach var="item" items="${page.content }">
 								<tr>
-									<td><a href="${contextPath }/app/info/${item.id}">${item.name }</a></td>
+									<td><a href="${pageContext.request.contextPath }/role/info/${item.id}">${item.name }</a></td>
 									<td>${item.code }</td>
 									<td align="center"><c:out
 											value="${item.state ==1?'启用':'禁用'}"></c:out></td>
-									<td>${item.url }</td>
-									<td align="center"><a href="#" onclick="changeState()"><c:out
-												value="${item.state ==1?'禁用':'启用'}"></c:out></a> <c:out
-											value="&nbsp;&nbsp;" escapeXml="false"></c:out> <a href="#"
-										onclick="deleteApp()"><c:out value="删除"></c:out></a> <c:out
-											value="&nbsp;&nbsp;" escapeXml="false"></c:out> <a href="#"
-										onclick="deleteApp()"><c:out value="管理员"></c:out></a></td>
+									<td>${item.app.name }</td>
+									<td align="center">
+										<a href="#" onclick="changeState()">
+											<c:out value="${item.state ==1?'禁用':'启用'}"></c:out>
+										</a>
+										<c:out value="&nbsp;&nbsp;" escapeXml="false"></c:out> 
+										 <a href="#" onclick="deleteRole()">
+										 	<c:out value="删除"></c:out>
+										 </a> 
+									</td> 
+											
 								</tr>
 							</c:forEach>
 						</tbody>

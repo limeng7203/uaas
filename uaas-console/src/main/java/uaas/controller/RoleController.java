@@ -36,7 +36,9 @@ public class RoleController {
 
 	@RequestMapping("/")
 	public String index(RoleCriteria criteria, ModelMap mm) {
+		List<App> apps = appService.findAll();
 		Page<Role> roles = roleService.list(criteria);
+		mm.addAttribute("apps", apps);
 		mm.addAttribute("page", roles);
 		log.info("角色首页");
 		return "/role/index";

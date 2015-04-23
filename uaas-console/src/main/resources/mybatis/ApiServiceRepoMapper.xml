@@ -7,11 +7,11 @@
 		select r.id "id", r.code "code", r.name "name", r.state
 		"state", r.updated "updated", a.name "app.name" from uaas_role r,
 		uaas_app a where r.id = a.id
-		<if test="appId != null">
+		<if test="appId != null and appId != '' ">
 			and r.id = #{appId}
 		</if>
-		<if test="name != null">
-			and r.name = #{name}
+		<if test="name != null and name != ''">
+			and r.name like CONCAT('%',#{name},'%')
 		</if>
 	</select>
 

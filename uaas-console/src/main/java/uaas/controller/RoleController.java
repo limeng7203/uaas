@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import uaas.domain.App;
 import uaas.domain.Role;
+import uaas.exception.BussinessException;
 import uaas.service.AppService;
 import uaas.service.RoleService;
 import uaas.service.criteria.RoleCriteria;
@@ -58,16 +59,48 @@ public class RoleController {
 		log.debug("===============role.app" + role.getApp().getId());
 		log.debug("===============role.name" + role.getName());
 		roleService.create(role);
+		mm.addAttribute("role", role);
 		return "/role/info";
 	}
 
 	@RequestMapping("/update/{id}")
-	public String update(@PathVariable Long id) {
-		return null;
+	public String update(@PathVariable Long id, ModelMap mm) {
+		try {
+			Role role = roleService.get(id);
+			mm.addAttribute("role", role);
+		} catch (BussinessException e) {
+			mm.addAttribute("error", e);
+			log.info("修改角色获取失败：" + id);
+		}
+		return "/role/update";
 	}
 
 	@RequestMapping("/modify")
 	public String modify(Role role, ModelMap mm) {
-		return null;
+		try {
+			roleService.update(role);
+			mm.addAttribute("role", role);
+			mm.addAttribute("info", "角色（" + role.getId() + "）更新成功");
+			log.info("成功更新应用：" + role.getId());
+		} catch (BussinessException e) {
+			mm.addAttribute("error", e);
+			mm.addAttribute("app", role);
+			log.info("更新应用失败：" + role.getId());
+			return "/role/update";
+		}
+		
+		return "/role/info";
+	}
+
+	@RequestMapping("/info/{id}")
+	public String info(@PathVariable Long id, ModelMap mm) {
+		try {
+			Role role = roleService.get(id);
+			mm.addAttribute("role", role);
+		} catch (BussinessException e) {
+			mm.addAttribute("error", e);
+			log.info("获取角色失败：" + id);
+		}
+		return "/role/info";
 	}
 }

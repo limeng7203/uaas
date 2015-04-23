@@ -49,6 +49,34 @@
 		initPager();
 		
 	}
+	
+	/**
+	 * 启用/禁用
+	 */
+	function changeState(id) {
+		var url = "./rest/enabled/" + id;
+		$.post(url, function(data, textStatus) {
+			if (false == data) {
+				alert("失败");
+			} else {
+				 location.reload();
+			}
+		}, "json");
+	}
+	
+	/**
+	 * 删除
+	 */
+	function deleteRole(id) {
+		var url = "./rest/delete/" + id;
+		$.post(url, function(data, textStatus) {
+			if (false == data) {
+				alert("失败");
+			} else {
+				 location.reload();
+			}
+		}, "json");
+	}
 </script>
 <title>权限管理系统</title>
 </head>
@@ -119,11 +147,11 @@
 											value="${item.state ==1?'启用':'禁用'}"></c:out></td>
 									<td>${item.app.name }</td>
 									<td align="center">
-										<a href="#" onclick="changeState()">
+										<a href="#" onclick="changeState(${item.id })">
 											<c:out value="${item.state ==1?'禁用':'启用'}"></c:out>
 										</a>
 										<c:out value="&nbsp;&nbsp;" escapeXml="false"></c:out> 
-										 <a href="#" onclick="deleteRole()">
+										 <a href="#" onclick="deleteRole(${item.id })">
 										 	<c:out value="删除"></c:out>
 										 </a> 
 									</td> 

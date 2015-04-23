@@ -8,36 +8,48 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import uaas.exception.BussinessException;
-import uaas.service.AppService;
+import uaas.service.RoleService;
 
 @RestController
-@RequestMapping("/app/rest")
-public class AppRestController {
+@RequestMapping("/role/rest")
+public class RoleRestController {
 	private Logger log = LoggerFactory.getLogger(getClass());
 
 	@Autowired
-	private AppService appService;
+	private RoleService roleService;
 
+	/**
+	 * 改变状态
+	 * 
+	 * @param id
+	 * @return
+	 */
 	@RequestMapping("/enabled/{id}")
 	public Boolean enabled(@PathVariable Long id) {
 		try {
-			appService.enabled(id);
-			log.info("改变应用状态：" + id);
+			roleService.enabled(id);
+			log.info("改变角色状态：" + id);
 			return true;
 		} catch (BussinessException e) {
-			log.info("更新应用失败：" + id);
+			log.info("更新角色状态失败：" + id);
 			return false;
 		}
 	}
 
+	/**
+	 * 删除角色
+	 * 
+	 * @param id
+	 * @return
+	 */
 	@RequestMapping("/delete/{id}")
 	public Boolean delete(@PathVariable Long id) {
 		try {
-			appService.delete(id);
-			log.info("删除应用：" + id);
+			roleService.delete(id);
+			log.info("删除角色：" + id);
 			return true;
 		} catch (BussinessException e) {
-			log.info("删除应用失败：" + id);
+			log.info("删除角色失败：" + id);
 			return false;
 		}
 	}

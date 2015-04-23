@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import uaas.domain.App;
 import uaas.domain.Role;
+import uaas.exception.BussinessException;
 import uaas.repo.AppRepo;
 import uaas.repo.ComplexQueryRepo;
 import uaas.repo.RoleRepo;
@@ -43,7 +44,7 @@ public class RoleService {
 	@Transactional
 	public Long create(Role role) {
 		log.info("创建角色");
-		
+
 		role.setCode(role.getName());
 		role.setState(1);
 		App app = appRepo.findByIdAndStateNot(role.getApp().getId(), -1);
@@ -60,6 +61,75 @@ public class RoleService {
 		PageInfo<Role> page = new PageInfo<Role>(roles);
 		return new PageImpl<Role>(roles, new PageRequest(criteria.getPage(),
 				criteria.getSize()), page.getTotal());
+	}
+
+	/**
+	 * 获取角色
+	 * 
+	 * @param id
+	 * @return
+	 */
+	public Role get(Long id) {
+		Role role = roleRepo.findByIdAndStateNot(id, -1);
+		if (null == role) {
+			throw new BussinessException("role_not_found_exception",
+					"该角色不存在或者已经被删除");
+		}
+		return role;
+	}
+
+	/**
+	 * 修改角色
+	 * 
+	 * @param role
+	 */
+	@Transactional
+	public void update(Role role) {
+		Role dbRole = roleRepo.findOne(role.getId());
+		if (-1 == dbRole.getState()) {
+			throw new BussinessException("role_deleted_exception", "该角色已经被删除");
+		}
+		App app = appRepo.getOne(role.getId());
+		if (-1 == app.getState()) {
+			throw new BussinessException("app_deleted_exception",
+					"该角色关联的应用已经被删除");
+		}
+		dbRole.setApp(app);
+		dbRole.setName(role.getName());
+		dbRole.setCode(role.getName());
+		dbRole.setUpdated(new Date());
+	}
+
+	/**
+	 * 启用/禁用角色
+	 * 
+	 * @param id
+	 */
+	@Transactional
+	public void enabled(Long id) {
+		Role role = roleRepo.findOne(id);
+
+		if (null == role) {
+			throw new BussinessException("role_not_exist", "应用不存在");
+		}
+
+		if (0 == role.getState()) {
+			role.setState(1);
+		} else {
+			role.setState(0);
+		}
+	}
+
+	/**
+	 * 删除角色
+	 * 
+	 * @param id
+	 */
+	@Transactional
+	public void delete(Long id) {
+		Role dbRole = roleRepo.findOne(id);
+		dbRole.setState(-1);
+		roleRepo.save(dbRole);
 	}
 
 }

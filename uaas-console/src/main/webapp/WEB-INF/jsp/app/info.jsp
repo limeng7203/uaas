@@ -24,8 +24,12 @@
 
 <script type="text/javascript">
 	$(function() {
+		// 高亮菜单
+		setActiveMenu("menu-app");
+		// 禁用编辑
 		$(":input").attr("disabled","disabled");
 	});
+	
 </script>
 <title>权限管理系统</title>
 </head>

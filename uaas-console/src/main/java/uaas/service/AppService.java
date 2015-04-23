@@ -11,14 +11,22 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import uaas.domain.App;
+import uaas.domain.Resource;
+import uaas.domain.Role;
 import uaas.exception.BussinessException;
 import uaas.repo.AppRepo;
+import uaas.repo.ResourceRepo;
+import uaas.repo.RoleRepo;
 
 @Service
 public class AppService {
 
 	@Autowired
 	private AppRepo appRepo;
+	@Autowired
+	private RoleRepo roleRepo;
+	@Autowired
+	private ResourceRepo resourceRepo;
 
 	/**
 	 * 获取应用列表<br>
@@ -121,6 +129,8 @@ public class AppService {
 	 * <pre>
 	 * 1、只是逻辑删除
 	 * 2、状态置位删除状态（-1）
+	 * 3、删除角色（-1）
+	 * 4、删除资源（-1）
 	 * </pre>
 	 * 
 	 * @param id
@@ -132,6 +142,19 @@ public class AppService {
 			throw new BussinessException("app_not_exist", "应用不存在");
 		}
 		app.setState(-1);
+		List<Role> roles = roleRepo.findByAppId(id);
+		for (Role role : roles) {
+			role.setState(-1);
+		}
+		roleRepo.save(roles);
+
+		List<Resource> resources = resourceRepo.findByAppId(id);
+		for (Resource resource : resources) {
+			resource.setState(-1);
+		}
+		resourceRepo.save(resources);
+
+		appRepo.save(app);
 	}
 
 	/**

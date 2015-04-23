@@ -8,6 +8,7 @@
 		"state", r.updated "updated", a.name "app.name" from uaas_role r,
 		uaas_app a where r.app_id = a.id
 		and a.state != -1
+		and r.state != -1
 		<if test="appId != null and appId != '' ">
 			and r.id = #{appId}
 		</if>

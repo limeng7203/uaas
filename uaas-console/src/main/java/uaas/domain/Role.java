@@ -1,6 +1,7 @@
 package uaas.domain;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -13,6 +14,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  * 角色
@@ -38,6 +41,14 @@ public class Role {
 	 * 状态：1：正常；0：停用；-1：删除
 	 */
 	private Integer state;
+	/**
+	 * 创建时间
+	 */
+	private Date created;
+	/**
+	 * 更新时间
+	 */
+	private Date updated;
 
 	/**
 	 * 所属应用
@@ -89,7 +100,25 @@ public class Role {
 		this.code = code;
 	}
 
-	@ManyToOne(fetch=FetchType.LAZY)
+	@Temporal(TemporalType.TIMESTAMP)
+	public Date getCreated() {
+		return created;
+	}
+
+	public void setCreated(Date created) {
+		this.created = created;
+	}
+
+	@Temporal(TemporalType.TIMESTAMP)
+	public Date getUpdated() {
+		return updated;
+	}
+
+	public void setUpdated(Date updated) {
+		this.updated = updated;
+	}
+
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "app_id")
 	public App getApp() {
 		return app;

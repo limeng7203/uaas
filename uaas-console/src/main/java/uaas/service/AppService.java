@@ -1,6 +1,7 @@
 package uaas.service;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.transaction.Transactional;
 
@@ -102,6 +103,11 @@ public class AppService {
 	@Transactional
 	public void enabled(Long id) {
 		App app = appRepo.findOne(id);
+
+		if (null == app) {
+			throw new BussinessException("app_not_exist", "应用不存在");
+		}
+
 		if (0 == app.getState()) {
 			app.setState(1);
 		} else {
@@ -122,6 +128,9 @@ public class AppService {
 	@Transactional
 	public void delete(Long id) {
 		App app = appRepo.findOne(id);
+		if (null == app) {
+			throw new BussinessException("app_not_exist", "应用不存在");
+		}
 		app.setState(-1);
 	}
 
@@ -143,9 +152,19 @@ public class AppService {
 
 	public Page<App> findByNameLike(String name, int page, int size) {
 		size = size > 100 ? 100 : size;
-		Page<App> apps = appRepo.findByNameLike("%" + name + "%", new PageRequest(page,
-				size));
+		Page<App> apps = appRepo.findByNameLike("%" + name + "%",
+				new PageRequest(page, size));
 		return apps;
+	}
+
+	/**
+	 * 获取所有应用
+	 * 
+	 * @return 所有可用的应用
+	 */
+	public List<App> findAll() {
+		Page<App> apps = appRepo.findByStateNot(-1, null);
+		return apps.getContent();
 	}
 
 }

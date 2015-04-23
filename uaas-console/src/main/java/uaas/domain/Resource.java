@@ -1,5 +1,7 @@
 package uaas.domain;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -7,6 +9,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  * 资源<br>
@@ -45,6 +49,14 @@ public class Resource {
 	 * 路径
 	 */
 	private String path;
+	/**
+	 * 创建时间
+	 */
+	private Date created;
+	/**
+	 * 更新时间
+	 */
+	private Date updated;
 
 	/**
 	 * 所属应用
@@ -118,8 +130,26 @@ public class Resource {
 	public void setPath(String path) {
 		this.path = path;
 	}
-	
-	@ManyToOne(fetch=FetchType.LAZY)
+
+	@Temporal(TemporalType.TIMESTAMP)
+	public Date getCreated() {
+		return created;
+	}
+
+	public void setCreated(Date created) {
+		this.created = created;
+	}
+
+	@Temporal(TemporalType.TIMESTAMP)
+	public Date getUpdated() {
+		return updated;
+	}
+
+	public void setUpdated(Date updated) {
+		this.updated = updated;
+	}
+
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "app_id")
 	public App getApp() {
 		return app;
@@ -129,7 +159,7 @@ public class Resource {
 		this.app = app;
 	}
 
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "parent_id")
 	public Resource getParent() {
 		return parent;

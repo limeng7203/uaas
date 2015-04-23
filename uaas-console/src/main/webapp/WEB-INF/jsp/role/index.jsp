@@ -1,12 +1,123 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<link rel="icon" href="../../../images/favicon.ico">
+<script src="../../../scripts/jquery/jquery-2.1.3.min.js"></script>
+<script src="../../../scripts/bootstrap-3.3.4-dist/js/bootstrap.min.js"></script>
+<script src="../../../scripts/dashboard/docs.min.js"></script>
+<script src="../../../scripts/dashboard/ie10-viewport-bug-workaround.js"></script>
+<script src="../../../scripts/dashboard/ie-emulation-modes-warning.js"></script>
+
+<link href="../../../scripts/bootstrap-3.3.4-dist/css/bootstrap.min.css"
+	rel="stylesheet">
+<link href="../../../scripts/dashboard/dashboard.css" rel="stylesheet">
+<link href="../../../scripts/commons/css/core.css" rel="stylesheet">
+
+<script src="../../../scripts/commons/js/url-util.js"></script>
+<script src="../../../scripts/commons/js/menu.js"></script>
+<script src="../../../scripts/commons/js/pager.js"></script>
+
+<script type="text/javascript">
+	/**
+	 * 初始化页面
+	 */
+	$(function() {
+
+		// 高亮菜单
+		setActiveMenu("menu-role");
+		// 初始化分页组件
+		init();
+	});
+
+	function init() {
+		var isContainsPageInfo = ${null == page};
+		if (isContainsPageInfo) {
+			alert("不包含分页信息");
+			return;
+		}
+		pager.page = ${page.number};
+		pager.size = ${page.size};
+		pager.elementNumber = ${page.numberOfElements};
+		pager.totalPages = ${page.totalPages};
+		pager.totalElements = ${page.totalElements};
+		pager.url = window.location.href.toString();
+		pager.queryString = window.location.search;
+		initPager();
+		
+	}
+</script>
+<title>权限管理系统</title>
 </head>
 <body>
+	<%@include file="../commons/header.jsp"%>
+	<div class="container-fluid">
+		<div class="row">
+			<%@include file="../commons/menu.jsp"%>
+			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+				<h2 class="page-header">应用管理</h2>
 
+				<ol class="breadcrumb">
+					<li><a href="/">首页</a></li>
+					<li class="active">应用列表</li>
+				</ol>
+
+				<div class="panel panel-primary">
+					<div class="panel-heading">
+						<h3 class="panel-title">操作区</h3>
+					</div>
+					<div class="panel-body">
+						<div class="row">
+							<div class="col-xs-10">
+								<form action="${contextPath }/app/queryByName" method="get">
+									<span>应用名称：</span> <input type="text"
+										name="name" /> <input type="submit" class="btn btn-primary"
+										value="查询" />
+								</form>
+							</div>
+							<div class="col-xs-2">
+								<a class="btn btn-primary" href="./create">添加</a>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="table-responsive">
+					<table class="table table-striped table-bordered">
+						<thead>
+							<tr>
+								<th width="15%" style="text-align: center;">应用名称</th>
+								<th width="10%" style="text-align: center;">应用编码</th>
+								<th width="10%" style="text-align: center;">应用状态</th>
+								<th width="40%" style="text-align: center;">URL</th>
+								<th style="text-align: center;">操作</th>
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach var="item" items="${page.content }">
+								<tr>
+									<td><a href="${contextPath }/app/info/${item.id}">${item.name }</a></td>
+									<td>${item.code }</td>
+									<td align="center"><c:out
+											value="${item.state ==1?'启用':'禁用'}"></c:out></td>
+									<td>${item.url }</td>
+									<td align="center"><a href="#" onclick="changeState()"><c:out
+												value="${item.state ==1?'禁用':'启用'}"></c:out></a> <c:out
+											value="&nbsp;&nbsp;" escapeXml="false"></c:out> <a href="#"
+										onclick="deleteApp()"><c:out value="删除"></c:out></a> <c:out
+											value="&nbsp;&nbsp;" escapeXml="false"></c:out> <a href="#"
+										onclick="deleteApp()"><c:out value="管理员"></c:out></a></td>
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
+				</div>
+				<%@include file="../commons/pager.jsp"%>
+			</div>
+		</div>
+	</div>
 </body>
 </html>

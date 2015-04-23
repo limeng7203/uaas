@@ -1,6 +1,7 @@
 package uaas.domain;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -11,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  * 用户组
@@ -36,6 +39,15 @@ public class Group {
 	 * 描述
 	 */
 	private String description;
+
+	/**
+	 * 创建时间
+	 */
+	private Date created;
+	/**
+	 * 更新时间
+	 */
+	private Date updated;
 
 	/**
 	 * 用户
@@ -77,6 +89,24 @@ public class Group {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	@Temporal(TemporalType.TIMESTAMP)
+	public Date getCreated() {
+		return created;
+	}
+
+	public void setCreated(Date created) {
+		this.created = created;
+	}
+
+	@Temporal(TemporalType.TIMESTAMP)
+	public Date getUpdated() {
+		return updated;
+	}
+
+	public void setUpdated(Date updated) {
+		this.updated = updated;
 	}
 
 	/**

@@ -2,4 +2,17 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="uaas.repo.ComplexQueryRepo">
 
+	<select id="findRoleByCriteriaTotal" parameterType="uaas.service.criteria.RoleCriteria"
+		resultType="uaas.domain.Role">
+		select r.id "id", r.code "code", r.name "name", r.state
+		"state", r.updated "updated", a.name "app.name" from uaas_role r,
+		uaas_app a where r.id = a.id
+		<if test="appId != null">
+			and r.id = #{appId}
+		</if>
+		<if test="name != null">
+			and r.name = #{name}
+		</if>
+	</select>
+
 </mapper>

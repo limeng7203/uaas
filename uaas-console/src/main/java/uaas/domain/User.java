@@ -1,5 +1,7 @@
 package uaas.domain;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -7,6 +9,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  * 用户
@@ -16,19 +20,66 @@ import javax.persistence.ManyToOne;
  */
 @Entity(name = "uaas_user")
 public class User {
+	/**
+	 * 主键
+	 */
 	private Long id;
+	/**
+	 * 用户名
+	 */
 	private String username;
+	/**
+	 * 密码
+	 */
 	private String password;
+	/**
+	 * 真实姓名
+	 */
 	private String realname;
+	/**
+	 * 状态
+	 */
 	private Integer state;
+	/**
+	 * 邮箱
+	 */
 	private String email;
+	/**
+	 * 手机
+	 */
 	private String mobile;
+	/**
+	 * 职称
+	 */
 	private String title;
+	/**
+	 * 职位级别
+	 */
 	private Integer level;
+	/**
+	 * 描述
+	 */
 	private String description;
+	/**
+	 * 直属领导Id
+	 */
 	private Long leaderId;
+	/**
+	 * 直属领导姓名
+	 */
 	private String leaderName;
+	/**
+	 * 创建时间
+	 */
+	private Date created;
+	/**
+	 * 更新时间
+	 */
+	private Date updated;
 
+	/**
+	 * 部门
+	 */
 	private Organization organization;
 
 	@Id
@@ -138,6 +189,24 @@ public class User {
 
 	public void setLeaderName(String leaderName) {
 		this.leaderName = leaderName;
+	}
+
+	@Temporal(TemporalType.TIMESTAMP)
+	public Date getCreated() {
+		return created;
+	}
+
+	public void setCreated(Date created) {
+		this.created = created;
+	}
+
+	@Temporal(TemporalType.TIMESTAMP)
+	public Date getUpdated() {
+		return updated;
+	}
+
+	public void setUpdated(Date updated) {
+		this.updated = updated;
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)

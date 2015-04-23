@@ -62,6 +62,7 @@ public class AppController {
 		Page<App> apps = appService.list((null == page ? 0 : page),
 				(null == size ? 20 : size));
 		mav.addObject("page", apps);
+		log.info("首页");
 		return mav;
 	}
 
@@ -69,6 +70,7 @@ public class AppController {
 	public ModelAndView create() {
 		ModelAndView mav = new ModelAndView("/app/create");
 		mav.addObject("app", new App());
+		log.info("创建应用页面");
 		return mav;
 	}
 
@@ -79,10 +81,12 @@ public class AppController {
 			appService.create(app);
 			mav.addObject("app", app);
 			mav.addObject("info", "应用（" + app.getId() + "）创建成功");
+			log.info("创建应用成功！");
 		} catch (BussinessException e) {
 			mav = new ModelAndView("/app/create");
 			mav.addObject("error", e);
 			mav.addObject("app", app);
+			log.info("创建应用失败！");
 		}
 		return mav;
 	}
@@ -91,10 +95,12 @@ public class AppController {
 	public ModelAndView info(@PathVariable Long id) {
 		ModelAndView mav = new ModelAndView("/app/info");
 		try {
+			log.info("获取应用：" + id);
 			App app = appService.get(id);
 			mav.addObject("app", app);
 		} catch (BussinessException e) {
 			mav.addObject("error", e);
+			log.info("获取应用失败：" + id);
 		}
 		return mav;
 	}
@@ -104,6 +110,7 @@ public class AppController {
 		ModelAndView mav = new ModelAndView("/app/update");
 		App app = appService.get(id);
 		mav.addObject("app", app);
+		log.info("更新应用页面：" + id);
 		return mav;
 	}
 
@@ -114,10 +121,12 @@ public class AppController {
 			appService.update(app);
 			mav.addObject("app", app);
 			mav.addObject("info", "应用（" + app.getId() + "）更新成功");
+			log.info("成功更新应用：" + app.getId());
 		} catch (BussinessException e) {
 			mav = new ModelAndView("/app/update");
 			mav.addObject("error", e);
 			mav.addObject("app", app);
+			log.info("更新应用失败：" + app.getId());
 		}
 		return mav;
 	}

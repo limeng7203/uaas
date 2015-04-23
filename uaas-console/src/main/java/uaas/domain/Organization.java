@@ -1,5 +1,7 @@
 package uaas.domain;
 
+import java.util.Date;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,6 +10,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  * 部门
@@ -49,6 +53,14 @@ public class Organization {
 	 * 负责人姓名
 	 */
 	private String leaderName;
+	/**
+	 * 创建时间
+	 */
+	private Date created;
+	/**
+	 * 更新时间
+	 */
+	private Date updated;
 
 	/**
 	 * 上级部门
@@ -126,6 +138,24 @@ public class Organization {
 
 	public void setLeaderName(String leaderName) {
 		this.leaderName = leaderName;
+	}
+
+	@Temporal(TemporalType.TIMESTAMP)
+	public Date getCreated() {
+		return created;
+	}
+
+	public void setCreated(Date created) {
+		this.created = created;
+	}
+
+	@Temporal(TemporalType.TIMESTAMP)
+	public Date getUpdated() {
+		return updated;
+	}
+
+	public void setUpdated(Date updated) {
+		this.updated = updated;
 	}
 
 	@ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)

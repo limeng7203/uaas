@@ -6,26 +6,30 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="icon" href="../../../images/favicon.ico">
-<script src="../../../scripts/jquery/jquery-2.1.3.min.js"></script>
-<script src="../../../scripts/bootstrap-3.3.4-dist/js/bootstrap.min.js"></script>
-<script src="../../../scripts/dashboard/docs.min.js"></script>
-<script src="../../../scripts/dashboard/ie10-viewport-bug-workaround.js"></script>
-<script src="../../../scripts/dashboard/ie-emulation-modes-warning.js"></script>
-<link href="../../../scripts/bootstrap-3.3.4-dist/css/bootstrap.min.css"
+<link rel="icon" href="${pageContext.request.contextPath }/images/favicon.ico">
+<script src="${pageContext.request.contextPath }/scripts/jquery/jquery-2.1.3.min.js"></script>
+<script src="${pageContext.request.contextPath }/scripts/bootstrap-3.3.4-dist/js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath }/scripts/dashboard/docs.min.js"></script>
+<script src="${pageContext.request.contextPath }/scripts/dashboard/ie10-viewport-bug-workaround.js"></script>
+<script src="${pageContext.request.contextPath }/scripts/dashboard/ie-emulation-modes-warning.js"></script>
+<link href="${pageContext.request.contextPath }/scripts/bootstrap-3.3.4-dist/css/bootstrap.min.css"
 	rel="stylesheet">
-<link href="../../../scripts/dashboard/dashboard.css" rel="stylesheet">
-<link href="../../../scripts/commons/css/core.css" rel="stylesheet">
-<script src="../../../scripts/commons/js/menu.js"></script>
-<script src="../../../scripts/commons/js/pager.js"></script>
+<link href="${pageContext.request.contextPath }/scripts/dashboard/dashboard.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath }/scripts/commons/css/core.css" rel="stylesheet">
+<script src="${pageContext.request.contextPath }/scripts/commons/js/menu.js"></script>
+<script src="${pageContext.request.contextPath }/scripts/commons/js/pager.js"></script>
 
 <script
-	src="../../../scripts/jquery-validation-1.13.1/dist/jquery.validate.min.js"></script>
+	src="${pageContext.request.contextPath }/scripts/jquery-validation-1.13.1/dist/jquery.validate.min.js"></script>
 
 <script type="text/javascript">
 	$(function() {
+		// 高亮菜单
+		setActiveMenu("menu-app");
+		// 禁用编辑
 		$(":input").attr("disabled","disabled");
 	});
+	
 </script>
 <title>权限管理系统</title>
 </head>
@@ -39,7 +43,7 @@
 
 				<ol class="breadcrumb">
 					<li><a href="/">首页</a></li>
-					<li><a href="${contextPath }/app/">应用列表</a></li>
+					<li><a href="${pageContext.request.contextPath }/app/">应用列表</a></li>
 					<li class="active">应用信息</li>
 				</ol>
 				<%@include file="../commons/info.jsp"%>
@@ -110,8 +114,8 @@
 						</table>
 
 						<div class="text-center">
-							<a href="${contextPath }/app/update/${app.id }" class="btn btn-primary">更新</a> <a
-								href="${contextPath }/app/" class="btn btn-default">取消</a>
+							<a href="${pageContext.request.contextPath }/app/update/${app.id }" class="btn btn-primary">更新</a> <a
+								href="${pageContext.request.contextPath }/app/" class="btn btn-default">取消</a>
 						</div>
 					</div>
 

@@ -1,6 +1,7 @@
 package uaas.service;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.transaction.Transactional;
 
@@ -10,14 +11,22 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import uaas.domain.App;
+import uaas.domain.Resource;
+import uaas.domain.Role;
 import uaas.exception.BussinessException;
 import uaas.repo.AppRepo;
+import uaas.repo.ResourceRepo;
+import uaas.repo.RoleRepo;
 
 @Service
 public class AppService {
 
 	@Autowired
 	private AppRepo appRepo;
+	@Autowired
+	private RoleRepo roleRepo;
+	@Autowired
+	private ResourceRepo resourceRepo;
 
 	/**
 	 * 获取应用列表<br>
@@ -102,6 +111,11 @@ public class AppService {
 	@Transactional
 	public void enabled(Long id) {
 		App app = appRepo.findOne(id);
+
+		if (null == app) {
+			throw new BussinessException("app_not_exist", "应用不存在");
+		}
+
 		if (0 == app.getState()) {
 			app.setState(1);
 		} else {
@@ -115,6 +129,8 @@ public class AppService {
 	 * <pre>
 	 * 1、只是逻辑删除
 	 * 2、状态置位删除状态（-1）
+	 * 3、删除角色（-1）
+	 * 4、删除资源（-1）
 	 * </pre>
 	 * 
 	 * @param id
@@ -122,7 +138,23 @@ public class AppService {
 	@Transactional
 	public void delete(Long id) {
 		App app = appRepo.findOne(id);
+		if (null == app) {
+			throw new BussinessException("app_not_exist", "应用不存在");
+		}
 		app.setState(-1);
+		List<Role> roles = roleRepo.findByAppId(id);
+		for (Role role : roles) {
+			role.setState(-1);
+		}
+		roleRepo.save(roles);
+
+		List<Resource> resources = resourceRepo.findByAppId(id);
+		for (Resource resource : resources) {
+			resource.setState(-1);
+		}
+		resourceRepo.save(resources);
+
+		appRepo.save(app);
 	}
 
 	/**
@@ -143,9 +175,19 @@ public class AppService {
 
 	public Page<App> findByNameLike(String name, int page, int size) {
 		size = size > 100 ? 100 : size;
-		Page<App> apps = appRepo.findByNameLike("%" + name + "%", new PageRequest(page,
-				size));
+		Page<App> apps = appRepo.findByNameLike("%" + name + "%",
+				new PageRequest(page, size));
 		return apps;
+	}
+
+	/**
+	 * 获取所有应用
+	 * 
+	 * @return 所有可用的应用
+	 */
+	public List<App> findAll() {
+		Page<App> apps = appRepo.findByStateNot(-1, null);
+		return apps.getContent();
 	}
 
 }

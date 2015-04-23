@@ -18,13 +18,24 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>1.2.0.RELEASE</version>
+		<version>1.2.3.RELEASE</version>
 		<relativePath />
 	</parent>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>1.7</java.version>
 	</properties>
+
+	<repositories>
+		<repository>
+			<id>spring-snapshots</id>
+			<name>Spring Snapshots</name>
+			<url>http://repo.spring.io/snapshot</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
 	<modules>
 		<module>uaas-auth</module>
 		<module>uaas-console</module>

@@ -6,22 +6,22 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="icon" href="../../../images/favicon.ico">
-<script src="../../../scripts/jquery/jquery-2.1.3.min.js"></script>
-<script src="../../../scripts/bootstrap-3.3.4-dist/js/bootstrap.min.js"></script>
-<script src="../../../scripts/dashboard/docs.min.js"></script>
-<script src="../../../scripts/dashboard/ie10-viewport-bug-workaround.js"></script>
-<script src="../../../scripts/dashboard/ie-emulation-modes-warning.js"></script>
-<link href="../../../scripts/bootstrap-3.3.4-dist/css/bootstrap.min.css"
+<link rel="icon" href="${pageContext.request.contextPath }/images/favicon.ico">
+<script src="${pageContext.request.contextPath }/scripts/jquery/jquery-2.1.3.min.js"></script>
+<script src="${pageContext.request.contextPath }/scripts/bootstrap-3.3.4-dist/js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath }/scripts/dashboard/docs.min.js"></script>
+<script src="${pageContext.request.contextPath }/scripts/dashboard/ie10-viewport-bug-workaround.js"></script>
+<script src="${pageContext.request.contextPath }/scripts/dashboard/ie-emulation-modes-warning.js"></script>
+<link href="${pageContext.request.contextPath }/scripts/bootstrap-3.3.4-dist/css/bootstrap.min.css"
 	rel="stylesheet">
-<link href="../../../scripts/dashboard/dashboard.css" rel="stylesheet">
-<link href="../../../scripts/commons/css/core.css" rel="stylesheet">
-<script src="../../../scripts/commons/js/menu.js"></script>
-<script src="../../../scripts/commons/js/pager.js"></script>
+<link href="${pageContext.request.contextPath }/scripts/dashboard/dashboard.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath }/scripts/commons/css/core.css" rel="stylesheet">
+<script src="${pageContext.request.contextPath }/scripts/commons/js/menu.js"></script>
+<script src="${pageContext.request.contextPath }/scripts/commons/js/pager.js"></script>
 
 <script
-	src="../../../scripts/jquery-validation-1.13.1/dist/jquery.validate.min.js"></script>
-<script src="../../../scripts/commons/js/app/create.js"></script>
+	src="${pageContext.request.contextPath }/scripts/jquery-validation-1.13.1/dist/jquery.validate.min.js"></script>
+<script src="${pageContext.request.contextPath }/scripts/commons/js/app/create.js"></script>
 
 <style type="text/css">
 #app-form label.error {
@@ -48,13 +48,13 @@
 					<li class="active">应用创建</li>
 				</ol>
 				<%@include file="../commons/error.jsp"%>			
-				<form:form id="app-form" action="./save" method="post"
+				<form:form id="app-form" action="${pageContext.request.contextPath }/app/save" method="post"
 					modelAttribute="app">
 					<div class="table-responsive">
 						<%@include file="_form.jsp"%>
 						<div class="text-center">
 							<input type="submit" value="创建" class="btn btn-primary" /> <a
-								href="./" class="btn btn-default">取消</a>
+								href="${pageContext.request.contextPath }/app/" class="btn btn-default">取消</a>
 						</div>
 					</div>
 

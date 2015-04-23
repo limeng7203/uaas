@@ -14,7 +14,7 @@
 	<url>http://maven.apache.org</url>
 	<properties>
 		<!-- 项目启动指定的启动类 -->
-		<start-class>metrics.SpringBootWebApplication</start-class>
+		<start-class>uaas.SpringBootWebApplication</start-class>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -28,6 +28,7 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-tomcat</artifactId>
+			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.tomcat.embed</groupId>
@@ -44,6 +45,11 @@
 			<version>3.2.7</version>
 		</dependency>
 		<dependency>
+			<groupId>com.github.pagehelper</groupId>
+			<artifactId>pagehelper</artifactId>
+			<version>3.6.4</version>
+		</dependency>
+		<dependency>
 			<groupId>org.mybatis</groupId>
 			<artifactId>mybatis-spring</artifactId>
 			<version>1.2.2</version>
@@ -58,6 +64,12 @@
 			<artifactId>postgresql</artifactId>
 			<version>9.4-1201-jdbc41</version>
 		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 	<build>
 		<plugins>
@@ -69,7 +81,7 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
 				<configuration>
-					<useSystemClassLoader>false</useSystemClassLoader>
+					<useSystemClassLoader>true</useSystemClassLoader>
 				</configuration>
 			</plugin>
 		</plugins>

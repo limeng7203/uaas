@@ -135,7 +135,7 @@ public class Resource {
 		this.path = path;
 	}
 
-	@Column(nullable = false, unique = true)
+	@Column(nullable = true)
 	public String getPathId() {
 		return pathId;
 	}

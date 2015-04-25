@@ -117,7 +117,7 @@ public class Organization {
 		this.state = state;
 	}
 
-	@Column(nullable = false, unique = true)
+	@Column(nullable = false)
 	public String getPath() {
 		return path;
 	}
@@ -126,7 +126,7 @@ public class Organization {
 		this.path = path;
 	}
 
-	@Column(nullable = false, unique = true)
+	@Column(nullable = true)
 	public String getPathId() {
 		return pathId;
 	}

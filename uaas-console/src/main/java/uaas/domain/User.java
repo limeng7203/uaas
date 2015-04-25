@@ -4,11 +4,8 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -80,7 +77,15 @@ public class User {
 	/**
 	 * 部门
 	 */
-	private Organization organization;
+	private Long organizationId;
+	/**
+	 * 部门
+	 */
+	private String organizationName;
+	/**
+	 * 部门
+	 */
+	private String organizationPath;
 
 	@Id
 	@GeneratedValue
@@ -209,14 +214,31 @@ public class User {
 		this.updated = updated;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "org_id")
-	public Organization getOrganization() {
-		return organization;
+	@Column(nullable = true)
+	public Long getOrganizationId() {
+		return organizationId;
 	}
 
-	public void setOrganization(Organization organization) {
-		this.organization = organization;
+	public void setOrganizationId(Long organizationId) {
+		this.organizationId = organizationId;
+	}
+
+	@Column(nullable = true)
+	public String getOrganizationName() {
+		return organizationName;
+	}
+
+	public void setOrganizationName(String organizationName) {
+		this.organizationName = organizationName;
+	}
+
+	@Column(nullable = true)
+	public String getOrganizationPath() {
+		return organizationPath;
+	}
+
+	public void setOrganizationPath(String organizationPath) {
+		this.organizationPath = organizationPath;
 	}
 
 }

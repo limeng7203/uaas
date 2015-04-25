@@ -19,11 +19,12 @@
 <script src="${pageContext.request.contextPath }/scripts/commons/js/menu.js"></script>
 <script src="${pageContext.request.contextPath }/scripts/commons/js/pager.js"></script>
 
-<script src="${pageContext.request.contextPath }/scripts/jquery-validation-1.13.1/dist/jquery.validate.min.js"></script>
-<script src="${pageContext.request.contextPath }/scripts/commons/js/app/create.js"></script>
+<script
+	src="${pageContext.request.contextPath }/scripts/jquery-validation-1.13.1/dist/jquery.validate.min.js"></script>
+<script src="${pageContext.request.contextPath }/scripts/commons/js/org/create.js"></script>
 
 <style type="text/css">
-#app-form label.error {
+#org-form label.error {
 	margin-left: 10px;
 	width: auto;
 	display: inline;
@@ -42,13 +43,13 @@
 				<h2 class="page-header">应用管理</h2>
 
 				<ol class="breadcrumb">
-					<li><a href="${pageContext.request.contextPath }/">首页</a></li>
-					<li><a href="${pageContext.request.contextPath }/app/">应用列表</a></li>
-					<li class="active">应用创建</li>
+					<li><a href="/">首页</a></li>
+					<li><a href="./">部门列表</a></li>
+					<li class="active">部门创建</li>
 				</ol>
 				<%@include file="../commons/error.jsp"%>			
-				<form:form id="app-form" action="${pageContext.request.contextPath }/app/save" method="post"
-					modelAttribute="app">
+				<form:form id="org-form" action="${pageContext.request.contextPath }/org/save" method="post"
+					modelAttribute="org">
 					<div class="table-responsive">
 						<%@include file="_form.jsp"%>
 						<div class="text-center">

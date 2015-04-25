@@ -17,6 +17,12 @@
 6、统一处理权限，尽量不要污染业务代码<br>
 7、使用Cookie时候注意中文问题，另外提前考虑不能超过4K<br>
 
+项目介绍：<br>
+uaas-api：契约接口<br>
+uaas-auth：实现接口，认证和授权<br>
+uaas-console：管理界面<br>
+uaas-client：一个干净的客户端使用，其实在uaas-console中也会使用到<br>
+
 联系方式：<br>
 QQ:745356640<br>
 Email:2008dreams@2008.sina.com<br>

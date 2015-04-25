@@ -1,0 +1,5 @@
+共同约定的接口：
+uaas-api：契约接口
+uaas-auth：实现接口，认证和授权
+uaas-console：管理界面
+uaas-client：一个干净的客户端使用，其实在uaas-console中也会使用到

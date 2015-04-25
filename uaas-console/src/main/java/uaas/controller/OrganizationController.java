@@ -17,4 +17,14 @@ public class OrganizationController {
 		return "/organization/index";
 	}
 
+	/**
+	 * 创建部门
+	 * 
+	 * @return
+	 */
+	@RequestMapping("/create")
+	public String create() {
+		return "/organization/index";
+	}
+
 }

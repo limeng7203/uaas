@@ -46,6 +46,10 @@ public class Organization {
 	 */
 	private String path;
 	/**
+	 * 路径ID
+	 */
+	private String pathId;
+	/**
 	 * 负责人
 	 */
 	private Long leaderId;
@@ -113,13 +117,22 @@ public class Organization {
 		this.state = state;
 	}
 
-	@Column(nullable = false)
+	@Column(nullable = false, unique = true)
 	public String getPath() {
 		return path;
 	}
 
 	public void setPath(String path) {
 		this.path = path;
+	}
+
+	@Column(nullable = false, unique = true)
+	public String getPathId() {
+		return pathId;
+	}
+
+	public void setPathId(String pathId) {
+		this.pathId = pathId;
 	}
 
 	@Column(nullable = true)

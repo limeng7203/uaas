@@ -1,5 +1,5 @@
-# uaas
-权限管理系统
+# uaas-United Authentication Authorization Service
+统一认证授权系统
 
 在期间做的一个权限管理系统，第一个版本使用Grails/Groovy开发的，基于Ldap持久，做的不是很好，这次想改版<br>
 1、spring boot<br>

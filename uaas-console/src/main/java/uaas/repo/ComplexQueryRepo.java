@@ -4,6 +4,7 @@ import java.util.List;
 
 import uaas.domain.Role;
 import uaas.service.criteria.RoleCriteria;
+import uaas.service.rest.OrganizationVO;
 
 /**
  * 综合复杂查询<br>
@@ -21,5 +22,12 @@ public interface ComplexQueryRepo {
 	 * @return
 	 */
 	List<Role> findRoleByCriteriaTotal(RoleCriteria criteria);
+
+	/**
+	 * 获取所有部门
+	 * 
+	 * @return
+	 */
+	List<OrganizationVO> findAllOrganiation();
 
 }

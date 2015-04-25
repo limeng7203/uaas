@@ -50,6 +50,10 @@ public class Resource {
 	 */
 	private String path;
 	/**
+	 * 路径ID
+	 */
+	private String pathId;
+	/**
 	 * 创建时间
 	 */
 	private Date created;
@@ -129,6 +133,15 @@ public class Resource {
 
 	public void setPath(String path) {
 		this.path = path;
+	}
+
+	@Column(nullable = false, unique = true)
+	public String getPathId() {
+		return pathId;
+	}
+
+	public void setPathId(String pathId) {
+		this.pathId = pathId;
 	}
 
 	@Temporal(TemporalType.TIMESTAMP)

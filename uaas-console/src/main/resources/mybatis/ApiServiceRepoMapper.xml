@@ -5,8 +5,10 @@
 	<select id="findRoleByCriteriaTotal" parameterType="uaas.service.criteria.RoleCriteria"
 		resultType="uaas.domain.Role">
 		select r.id "id", r.code "code", r.name "name", r.state
-		"state", r.updated "updated", a.name "app.name" from uaas_role r,
-		uaas_app a where r.app_id = a.id
+		"state",
+		r.updated "updated", a.name "app.name" from uaas_role r,
+		uaas_app a
+		where r.app_id = a.id
 		and a.state != -1
 		and r.state != -1
 		<if test="appId != null and appId != '' ">
@@ -17,4 +19,9 @@
 		</if>
 	</select>
 
+	<select id="findAllOrganiation" resultType="uaas.service.rest.OrganizationVO">
+		select id "id", name
+		"name", level "level", path "path", state "state", leader_name
+		"leaderName", parent_id "parentId" from uaas_org where state != -1
+	</select>
 </mapper>

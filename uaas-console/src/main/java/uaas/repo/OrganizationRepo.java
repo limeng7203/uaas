@@ -9,7 +9,7 @@ import uaas.domain.Organization;
 
 public interface OrganizationRepo extends JpaRepository<Organization, Long> {
 
-	@Query("from Organization org where org.parent.id = ?1 and org.name = ?2 and org.state != ?3")
+	@Query("from uaas_org org where org.parent.id = ?1 and org.name = ?2 and org.state != ?3")
 	List<Organization> findByParentIdAndNameAndStateNot(Long id, String name, Integer state);
 
 	List<Organization> findByPathLike(String path);

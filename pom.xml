@@ -8,11 +8,36 @@
 	<version>1.0.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
+	<!-- 
+	在maven的配置文件setting.xml配置servers节点
+	
+	settings.xml配置账号密码。注意server的id与repository的id必须对应
+	
+	复制一份.m2/目录
+	
+	<server>
+        <id>releases</id>
+        <username>admin</username>
+        <password>admin123</password>
+    </server>
+    <server>
+        <id>snapshots</id>
+        <username>admin</username>
+        <password>admin123</password>
+    </server>
+	
+	 -->
 	<distributionManagement>
-		<site>
-			<id>website</id>
-			<url>scp://webhost.company.com/www/website</url>
-		</site>
+		<repository>
+			<id>releases</id>
+			<name>Nexus Release Repository</name>
+			<url>http://192.168.1.105:8081/nexus/content/repositories/releases/</url>
+		</repository>
+		<snapshotRepository>
+			<id>snapshots</id>
+			<name>Nexus Snapshot Repository</name>
+			<url>http://192.168.1.105:8081/nexus/content/repositories/snapshots/</url>
+		</snapshotRepository>
 	</distributionManagement>
 
 	<parent>

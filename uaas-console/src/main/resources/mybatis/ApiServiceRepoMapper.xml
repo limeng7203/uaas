@@ -22,6 +22,6 @@
 	<select id="findAllOrganiation" resultType="uaas.service.rest.OrganizationVO">
 		select id "id", name
 		"name", level "level", path "path", state "state", leader_name
-		"leaderName", parent_id "parentId" from uaas_org where state != -1
+		"leaderName", parent_id "pid" from uaas_org where state != -1
 	</select>
 </mapper>

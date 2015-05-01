@@ -38,6 +38,8 @@ public class OrganizationController {
 	@RequestMapping("/create")
 	public String create(ModelMap mm) {
 		Organization organization = new Organization();
+		Organization parent = new Organization();
+		organization.setParent(parent);
 		mm.addAttribute("organization", organization);
 		return "/organization/create";
 	}
@@ -65,7 +67,7 @@ public class OrganizationController {
 
 	@RequestMapping("/info/{id}")
 	public String info(@PathVariable Long id, ModelMap mm) {
-		Organization organization = organizationService.get(id);
+//		Organization organization = organizationService.get(id);
 		return "/organization/info";
 	}
 

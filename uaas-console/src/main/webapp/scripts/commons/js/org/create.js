@@ -4,14 +4,17 @@
 $(function () {
 	
 	// 高亮菜单
-	setActiveMenu("menu-app");
+	setActiveMenu("menu-org");
 	// 验证表单
 	validateForm();
 	
 });
 
+
+
+
 function validateForm() {
-	$("#app-form").validate({
+	$("#org-form").validate({
 		rules: {
 			name: {
 				required: true,

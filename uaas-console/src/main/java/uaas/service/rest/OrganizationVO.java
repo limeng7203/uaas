@@ -9,7 +9,7 @@ public class OrganizationVO {
 	/**
 	 * 上级部门
 	 */
-	private Long parentId;
+	private Long pid;
 	/**
 	 * 部门名称
 	 */
@@ -39,12 +39,12 @@ public class OrganizationVO {
 		this.id = id;
 	}
 
-	public Long getParentId() {
-		return parentId;
+	public Long getPid() {
+		return pid;
 	}
 
-	public void setParentId(Long parentId) {
-		this.parentId = parentId;
+	public void setPid(Long pid) {
+		this.pid = pid;
 	}
 
 	public String getName() {

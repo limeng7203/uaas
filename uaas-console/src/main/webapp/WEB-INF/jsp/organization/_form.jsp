@@ -6,50 +6,32 @@
 			<td colspan="4"><b>基本信息</b></td>
 		</tr>
 		<tr>
-			<form:hidden path="id"/>
+			<form:hidden path="id" />
 			<td class="active text-right"><label class="control-label"
-				for="name">应用名称：<span class="required">*</span></label></td>
+				for="name">上级部门：</label></td>
+			<td colspan="3">
+				<div class="input-group input-group-sm">
+					<form:input path="name" />
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td class="active text-right"><label class="control-label "
+				for="code">部门名称：<span class="required">*</span>
+			</label></td>
 			<td>
 				<div class="input-group input-group-sm">
 					<form:input path="name" />
 				</div>
 			</td>
-			<td class="active text-right"><label class="control-label "
-				for="code">应用编码：<span class="required">*</span></label></td>
+			<td class="active text-right"><label class="control-label"
+				for="secret">负责人：</label></td>
 			<td>
 				<div class="input-group input-group-sm">
-					<form:input path="code" />
-				</div>
-			</td>
-		</tr>
-		<tr>
-			<td class="active text-right"><label class="control-label"
-				for="secret">应用密钥：<span class="required">*</span></label></td>
-			<td colspan="3">
-				<div class="input-group input-group-sm">
-					<form:input path="secret" />
+					<form:input path="leaderId" />
 				</div>
 			</td>
 		</tr>
 
-		<tr>
-			<td class="active text-right"><label class="control-label"
-				for="secret">URL：<span class="required">*</span></label></td>
-			<td colspan="3">
-				<div class="input-group input-group-sm">
-					<form:input type="url" path="url"  size="50"/>
-				</div>
-			</td>
-		</tr>
-
-		<tr>
-			<td class="active text-right"><label class="control-label"
-				for="secret">应用描述：</label></td>
-			<td colspan="3">
-				<div class="input-group input-group-sm">
-					<form:textarea path="description" cols="50"/>
-				</div>
-			</td>
-		</tr>
 	</tbody>
 </table>

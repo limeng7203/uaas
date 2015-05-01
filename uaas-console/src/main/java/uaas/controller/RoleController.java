@@ -58,8 +58,15 @@ public class RoleController {
 	public String save(Role role, ModelMap mm) {
 		log.debug("===============role.app" + role.getApp().getId());
 		log.debug("===============role.name" + role.getName());
-		roleService.create(role);
-		mm.addAttribute("role", role);
+		try {
+			roleService.create(role);
+			mm.addAttribute("info", "角色（" + role.getId() + "）创建成功");
+			mm.addAttribute("role", role);
+		} catch (BussinessException e) {
+			mm.addAttribute("error", e);
+			mm.addAttribute("role", role);
+			return "/role/create";
+		}
 		return "/role/info";
 	}
 
@@ -84,11 +91,11 @@ public class RoleController {
 			log.info("成功更新应用：" + role.getId());
 		} catch (BussinessException e) {
 			mm.addAttribute("error", e);
-			mm.addAttribute("app", role);
+			mm.addAttribute("role", role);
 			log.info("更新应用失败：" + role.getId());
 			return "/role/update";
 		}
-		
+
 		return "/role/info";
 	}
 

@@ -60,12 +60,13 @@ function nextPage() {
 	if (isKeyContains(pager.queryString, "page")) {
 		nUrl = replaceParamVal(pager.url, "page",
 				(pager.page + 1 < pager.totalPages  ? pager.page + 1
-						: pager.totalPages -1));
+						: (pager.totalPages -1 < 0 ? 0 : pager.totalPages -1)));
 		return nUrl;
 	}
+
 	nUrl = addParam(pager.url, "page",
 			(pager.page + 1 < pager.totalPages ? pager.page + 1
-					: pager.page + 1));
+					: (pager.totalPages -1 <  0 ? 0 : pager.totalPages -1)));
 	
 	return nUrl;
 }
@@ -76,7 +77,7 @@ function nextPage() {
 function endPage() {
 	var nUrl = "";
 	if (isKeyContains(pager.queryString, "page")) {
-		nUrl = replaceParamVal(pager.url, "page", pager.totalPages - 1);
+		nUrl = replaceParamVal(pager.url, "page", (pager.totalPages - 1 < 0 ? 0 :pager.totalPages - 1 ));
 		return nUrl;
 	}
 	return pager.url;

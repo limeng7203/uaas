@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -12,15 +11,14 @@
 <script src="${pageContext.request.contextPath }/scripts/dashboard/docs.min.js"></script>
 <script src="${pageContext.request.contextPath }/scripts/dashboard/ie10-viewport-bug-workaround.js"></script>
 <script src="${pageContext.request.contextPath }/scripts/dashboard/ie-emulation-modes-warning.js"></script>
-<link href="${pageContext.request.contextPath }/scripts/bootstrap-3.3.4-dist/css/bootstrap.min.css"
-	rel="stylesheet">
+<script src="${pageContext.request.contextPath }/scripts/bootstrap-treeview/dist/bootstrap-treeview.min.js"></script>
+<link href="${pageContext.request.contextPath }/scripts/bootstrap-3.3.4-dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath }/scripts/dashboard/dashboard.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath }/scripts/commons/css/core.css" rel="stylesheet">
 <script src="${pageContext.request.contextPath }/scripts/commons/js/menu.js"></script>
 <script src="${pageContext.request.contextPath }/scripts/commons/js/pager.js"></script>
 
-<script
-	src="${pageContext.request.contextPath }/scripts/jquery-validation-1.13.1/dist/jquery.validate.min.js"></script>
+<script src="${pageContext.request.contextPath }/scripts/jquery-validation-1.13.1/dist/jquery.validate.min.js"></script>
 <script src="${pageContext.request.contextPath }/scripts/commons/js/org/create.js"></script>
 
 <style type="text/css">
@@ -43,18 +41,18 @@
 				<h2 class="page-header">应用管理</h2>
 
 				<ol class="breadcrumb">
-					<li><a href="/">首页</a></li>
-					<li><a href="./">部门列表</a></li>
+					<li><a href="${pageContext.request.contextPath }/">首页</a></li>
+					<li><a href="${pageContext.request.contextPath }/org/">部门列表</a></li>
 					<li class="active">部门创建</li>
 				</ol>
 				<%@include file="../commons/error.jsp"%>			
-				<form:form id="org-form" action="${pageContext.request.contextPath }/org/save" method="post"
-					modelAttribute="org">
+				<form:form id="org-form" action="${pageContext.request.contextPath }/organization/save" method="post"
+					modelAttribute="organization">
 					<div class="table-responsive">
 						<%@include file="_form.jsp"%>
 						<div class="text-center">
 							<input type="submit" value="创建" class="btn btn-primary" /> <a
-								href="${pageContext.request.contextPath }/app/" class="btn btn-default">取消</a>
+								href="${pageContext.request.contextPath }/organization/" class="btn btn-default">取消</a>
 						</div>
 					</div>
 

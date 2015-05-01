@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>uaas</groupId>
@@ -18,30 +19,30 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>1.2.3.RELEASE</version>
-		<relativePath/>
+		<relativePath />
 	</parent>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>1.7</java.version>
 	</properties>
 
-<repositories>
-         <repository>
-             <id>nexus</id>
-              <name>Team Nexus Repository</name>
-              <url>http://192.168.1.105:8081/nexus/content/groups/public</url>
-         </repository>
-     </repositories>
-     <pluginRepositories>
-         <pluginRepository>
-             <id>nexus</id>
-             <name>Team Nexus Repository</name>
-             <url>http://192.168.1.105:8081/nexus/content/groups/public</url>
-         </pluginRepository>
-     </pluginRepositories>
+	<repositories>
+		<repository>
+			<id>nexus</id>
+			<name>Team Nexus Repository</name>
+			<url>http://192.168.1.105:8081/nexus/content/groups/public</url>
+		</repository>
+	</repositories>
+	<pluginRepositories>
+		<pluginRepository>
+			<id>nexus</id>
+			<name>Team Nexus Repository</name>
+			<url>http://192.168.1.105:8081/nexus/content/groups/public</url>
+		</pluginRepository>
+	</pluginRepositories>
 	<modules>
 		<module>uaas-auth</module>
 		<module>uaas-console</module>
-    <module>uaas-api</module>
-  </modules>
+		<module>uaas-api</module>
+	</modules>
 </project>

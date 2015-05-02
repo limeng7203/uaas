@@ -14,4 +14,6 @@ public interface OrganizationRepo extends JpaRepository<Organization, Long> {
 
 	List<Organization> findByPathLike(String path);
 
+	Organization findByLevelAndNameAndStateNot(int level, String name, int state);
+
 }

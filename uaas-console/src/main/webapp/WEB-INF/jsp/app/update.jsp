@@ -49,7 +49,7 @@
 				</ol>
 				<%@include file="../commons/error.jsp"%>			
 				<form:form id="app-form" action="${pageContext.request.contextPath }/app/modify" method="post"
-					modelAttribute="app">
+					modelAttribute="app" class="form-inline">
 					<div class="table-responsive">
 						<%@include file="_form.jsp"%>
 						<div class="text-center">

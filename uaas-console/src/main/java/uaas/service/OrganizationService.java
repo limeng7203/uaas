@@ -18,6 +18,7 @@ import uaas.service.rest.OrganizationVO;
 
 /**
  * 部门业务<br>
+ * 
  * <pre>
  * 部门服务虽然功能不是很多，但是涉及到了层级关系，像移动、删除包含子部门
  * 其实业务还是蛮多的。
@@ -30,6 +31,7 @@ import uaas.service.rest.OrganizationVO;
  * 删除了这个用户，这个部门显示正常，至于负责人另说，所以使用弱关系。
  * 
  * </pre>
+ * 
  * @author percy
  *
  */
@@ -70,7 +72,16 @@ public class OrganizationService {
 				throw new BussinessException("organization_name_exist",
 						"该部门下已经有了相同的名字部门");
 			}
+		} else {
+			Organization sameOrg = organizationRepo
+					.findByLevelAndNameAndStateNot(1, organization.getName(),
+							-1);
+			if (null != sameOrg) {
+				throw new BussinessException("organization_name_exist",
+						"该部门下已经有了相同的名字部门");
+			}
 		}
+
 		organization.setCode(organization.getName());
 		organization.setCreated(new Date());
 		organization.setUpdated(new Date());

@@ -9,10 +9,20 @@
 			<form:hidden path="id" />
 			<td class="active text-right"><label class="control-label"
 				for="name">上级部门：</label></td>
-			<td colspan="3">
-				<div class="input-group input-group-sm">
-					<form:input path="name" />
-				</div>
+			<td>
+				<input id="parentId" type="hidden" name="parent.id" />
+				<input id="targetDepartment" class="form-control" readonly
+	                        placeholder="上级部门" data-toggle="modal"
+	                        data-target=".bs-example-modal-sm" style="width: 250px;"/>
+	
+		           <div id="org-tree" class="modal fade bs-example-modal-sm" tabindex="-1"
+		                role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+		               <div class="modal-dialog modal-sm">
+		                   <div class="modal-content">
+		                       <div id="tree">====</div>
+		                   </div>
+		               </div>
+		           </div>
 			</td>
 		</tr>
 		<tr>
@@ -21,14 +31,14 @@
 			</label></td>
 			<td>
 				<div class="input-group input-group-sm">
-					<form:input path="name" />
+					<form:input path="name" class="form-control"  style="width: 250px;"/>
 				</div>
 			</td>
 			<td class="active text-right"><label class="control-label"
 				for="secret">负责人：</label></td>
 			<td>
 				<div class="input-group input-group-sm">
-					<form:input path="leaderId" />
+					<form:input path="leaderId" class="form-control"  style="width: 250px;"/>
 				</div>
 			</td>
 		</tr>

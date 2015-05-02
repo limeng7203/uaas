@@ -112,7 +112,7 @@
 									</div>
 									<div class="form-group" >
 										<span for="name">名称：</span>
-										<input id="name" name="name"  type="text" class="form-control" />
+										<input id="name" name="name" size="10"  type="text" class="form-control" />
 									</div>
 									<div class="form-group" >
 										<input type="submit" class="btn btn-primary" value="查询" />

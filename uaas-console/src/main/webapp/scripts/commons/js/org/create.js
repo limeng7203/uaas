@@ -7,11 +7,19 @@ $(function () {
 	setActiveMenu("menu-org");
 	// 验证表单
 	validateForm();
+	// 加载所有部门树结构
+	loadOrgTree();
 	
 });
 
-
-
+function loadOrgTree() {
+	$('#org-tree').on('show.bs.modal', function (e) {
+		  // do something...
+		alert("===========");
+		
+		
+	});
+}
 
 function validateForm() {
 	$("#org-form").validate({

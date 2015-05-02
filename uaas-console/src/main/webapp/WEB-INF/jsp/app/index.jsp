@@ -101,9 +101,9 @@
 					<div class="panel-body">
 						<div class="row">
 							<div class="col-xs-10">
-								<form action="${pageContext.request.contextPath }/app/queryByName" method="get">
+								<form action="${pageContext.request.contextPath }/app/queryByName" method="get" class="form-inline">
 									<span>应用名称：</span> <input type="text"
-										name="name" /> <input type="submit" class="btn btn-primary"
+										name="name" size="10" class="form-control" /> <input type="submit" class="btn btn-primary"
 										value="查询" />
 								</form>
 							</div>

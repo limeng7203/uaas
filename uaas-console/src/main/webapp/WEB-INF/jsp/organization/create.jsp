@@ -47,7 +47,7 @@
 				</ol>
 				<%@include file="../commons/error.jsp"%>			
 				<form:form id="org-form" action="${pageContext.request.contextPath }/organization/save" method="post"
-					modelAttribute="organization">
+					modelAttribute="organization" class="form-inline">
 					<div class="table-responsive">
 						<%@include file="_form.jsp"%>
 						<div class="text-center">

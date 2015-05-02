@@ -48,7 +48,7 @@
 				</ol>
 				<%@include file="../commons/info.jsp"%>
 				<%@include file="../commons/error.jsp"%>
-				<form:form id="app-form" modelAttribute="app">
+				<form:form id="app-form" modelAttribute="app" class="form-inline">
 					<div class="table-responsive">
 					
 						<table class="table table-bordered">
@@ -62,7 +62,7 @@
 										for="name">应用名称：<span class="required">*</span></label></td>
 									<td>
 										<div class="input-group input-group-sm">
-											<form:input path="name" />
+											<form:input path="name" class="form-control" />
 										</div>
 									</td>
 									<td class="active text-right"><label
@@ -70,7 +70,7 @@
 											class="required">*</span></label></td>
 									<td>
 										<div class="input-group input-group-sm">
-											<form:input path="code" />
+											<form:input path="code" class="form-control" />
 										</div>
 									</td>
 								</tr>
@@ -79,14 +79,14 @@
 										for="secret">应用密钥：<span class="required">*</span></label></td>
 									<td>
 										<div class="input-group input-group-sm">
-											<form:input path="secret" />
+											<form:input path="secret" class="form-control" />
 										</div>
 									</td>
 									<td class="active text-right"><label
 										class="control-label " for="code">更新时间：</label></td>
 									<td>
 										<div class="input-group input-group-sm">
-											<form:input path="lastUpdated" />
+											<form:input path="lastUpdated" class="form-control" />
 										</div>
 									</td>
 								</tr>
@@ -96,7 +96,7 @@
 										for="secret">URL：<span class="required">*</span></label></td>
 									<td colspan="3">
 										<div class="input-group input-group-sm">
-											<form:input path="url" size="50" />
+											<form:input path="url" size="50" class="form-control" />
 										</div>
 									</td>
 								</tr>

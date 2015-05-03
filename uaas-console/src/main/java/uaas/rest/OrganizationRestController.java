@@ -20,7 +20,7 @@ public class OrganizationRestController {
 	@Autowired
 	private OrganizationService organizationService;
 
-	@RequestMapping(name = "/findAll")
+	@RequestMapping("/findAll")
 	public List<OrganizationVO> findAll() {
 		log.info("获取所有部门");
 		try {

@@ -12,12 +12,17 @@ $(function () {
 	
 });
 
+var aa = [{"id":1,"pid":null,"name":"test","level":1,"state":1,"path":"/test","leaderName":null},{"id":2,"pid":null,"name":"test","level":1,"state":1,"path":"/test","leaderName":null},{"id":3,"pid":null,"name":"test","level":1,"state":1,"path":"/test","leaderName":null},{"id":4,"pid":null,"name":"test","level":1,"state":1,"path":"/test","leaderName":null}];
+
 function loadOrgTree() {
 	$('#org-tree').on('show.bs.modal', function (e) {
 		  // do something...
 		alert("===========");
 		
-		
+        $.get("./findAll", function (data) {
+        	alert(JSON.stringify(""));
+            GetFirstNode(data);
+        });
 	});
 }
 
